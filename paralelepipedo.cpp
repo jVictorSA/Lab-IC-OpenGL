@@ -2,7 +2,20 @@
 
 #include <GL/glut.h>
 
+#include <cmath>
+
 float angulo = 0.0;
+float angulo2 = 0.0;
+float lx, ly = 0.0f, lz = -1.0f;
+float x = 0.0f, z = 10.0f;
+float y = 0;
+float velocity = 1.0f;
+float delta = 0.1f;
+
+float deltaAngle = 0.0f;
+float deltaAngle2 = 0.0f;
+int xOrigin = 0;
+int yOrigin = 0;
 
 // Desenha retângulo
 void retangulo(float x0, float y0, float altura, float largura){
@@ -130,8 +143,8 @@ void render(){
     glLoadIdentity();
 
     gluLookAt(
-            0.0f, 0.0f, 10.0f,
-			0.0f, 0.0f,  0.0f,
+            x, y, z,
+			x+lx, y+ly,  z+lz,
 			0.0f, 1.0f,  0.0f);
 
     glRotatef(angulo, 0, 1, 0);
@@ -142,7 +155,7 @@ void render(){
     
     glEnd();
 
-    angulo += 1.8;
+    // angulo += 1.8;
 
     glutSwapBuffers();
 }
@@ -183,6 +196,96 @@ void sair(unsigned char tecla, int x, int y){
     if(tecla == 'q' || tecla == 'Q'){ exit(0); }
 }
 
+void moverTeclado(int tecla, int x, int y){
+    switch(tecla){
+        case GLUT_KEY_RIGHT :
+            angulo += 0.1f;
+            lx = sin(angulo);
+            lz = -cos(angulo);
+            break;
+
+        case GLUT_KEY_LEFT :
+            angulo -= 0.1f;
+            lx = sin(angulo);
+            lz = -cos(angulo);
+            
+            
+            break;
+
+        case GLUT_KEY_UP :
+            angulo2 += 0.1f;
+            ly = sin(angulo2);
+            lz = -cos(angulo2);
+            // x += lx * delta;
+            // z += lz * delta;
+            
+            break;
+
+
+        case GLUT_KEY_DOWN :
+
+            angulo2 -= 0.1f;
+            ly = sin(angulo2);
+            lz = -cos(angulo2);
+            // x -= lx * delta;
+            // z -= lz * delta;
+            break;
+
+        
+
+    }
+
+    
+}
+
+void mouseButton(int button, int state, int x, int y) {
+
+	
+	if (button == GLUT_LEFT_BUTTON) {
+
+		
+		if (state == GLUT_UP) {
+			angulo += deltaAngle;
+            angulo2 += deltaAngle2;
+			xOrigin = -1;
+            yOrigin = -1;
+		}
+		else  {
+			xOrigin = x;
+            yOrigin = y;
+		}
+	}
+}
+
+
+void mouseMove(int x, int y) {
+
+	// this will only be true when the left button is down
+	if (xOrigin >= 0) {
+
+		
+		deltaAngle = (x - xOrigin) * 0.005f;
+        
+		
+		lx = sin(angulo + deltaAngle);
+		lz = -cos(angulo + deltaAngle);
+        
+	}
+
+    if (yOrigin >= 0) {
+
+		
+		deltaAngle2 = -(y - yOrigin) * 0.005f;
+        
+		
+		ly = sin(angulo2 + deltaAngle2);
+		// lz = -cos(angulo2 + deltaAngle2);
+        
+	}
+
+}
+
+
 int main (int argc, char **argv){
 
     glutInit(&argc, argv);
@@ -197,6 +300,9 @@ int main (int argc, char **argv){
 
     glutDisplayFunc(render);
     glutKeyboardFunc(sair);
+    glutMouseFunc(mouseButton);
+	glutMotionFunc(mouseMove);
+    glutSpecialFunc(moverTeclado);
     glutReshapeFunc(mudaTamJanela);
 
     // Não me perguntem oq essa bagaça faz
