@@ -111,16 +111,80 @@ void paralelepipedoFechado(float altura, float largura, float profundidade,
         glEnd();
 }
 
+void trianguloFechado(float altura, float largura, float profundidade,
+                      float xInicial, float yInicial, float zInicial){
+
+    glBegin(GL_TRIANGLES);
+        glColor3f(1,0,0);           //Vermelho
+        glVertex3f(xInicial, yInicial,  zInicial);
+        glVertex3f(xInicial + largura / 2, yInicial + altura,  zInicial);
+        glVertex3f(xInicial + largura, yInicial,  zInicial);
+    glEnd();
+
+    glBegin(GL_TRIANGLES);
+        glColor3f(0,1,0);           //Verde
+        glVertex3f(xInicial, yInicial,  zInicial - profundidade);
+        glVertex3f(xInicial + largura/2, yInicial + altura,  zInicial - profundidade);
+        glVertex3f(xInicial + largura, yInicial,  zInicial - profundidade);
+    glEnd();
+
+    glBegin(GL_QUADS); 
+        glColor3f(0,0,1);           //Azul
+        glVertex3f(xInicial, yInicial,  zInicial - profundidade);
+        glVertex3f(xInicial, yInicial,  zInicial);
+        glVertex3f(xInicial + largura/2, yInicial + altura,  zInicial);
+        glVertex3f(xInicial + largura/2 , yInicial + altura,  zInicial - profundidade);
+    glEnd();
+    
+    glBegin(GL_QUADS);
+        glColor3f(1,0,1);           //Rosa
+        glVertex3f(xInicial + largura, yInicial,  zInicial - profundidade);
+        glVertex3f(xInicial + largura , yInicial,  zInicial);
+        glVertex3f(xInicial + largura/2, yInicial + altura,  zInicial);
+        glVertex3f(xInicial + largura/2 , yInicial + altura,  zInicial - profundidade);
+    glEnd();
+
+    glBegin(GL_QUADS);
+        glColor3f(1,1,1);           //Branco
+        glVertex3f(xInicial + largura, yInicial,  zInicial - profundidade);
+        glVertex3f(xInicial + largura , yInicial,  zInicial);
+        glVertex3f(xInicial, yInicial,  zInicial);
+        glVertex3f(xInicial, yInicial,  zInicial - profundidade);
+    glEnd();
+
+}
 
 void laboratorio(){
-    //paralelepipedoAberto(4,4,3,-2,-2,0);
+    // //Paredes e piso
     paralelepipedoFechado(4,4,0.15,-2,-2,0);
     paralelepipedoFechado(0.15,4,4,-2,-2,4);
     paralelepipedoFechado(4,0.15,4,-2,-2,4);
-    paralelepipedoFechado(4,0.15,4, 2,-2,4);
-    // Desenhra Teto
-    // glRotatef(60, 1,0,0);
-    // paralelepipedoFechado(2,4,0.15,-2,-3.5,0);
+    paralelepipedoFechado(4,0.15,4, 1.85,-2,4);
+    
+    // Desenha Teto
+    glPushMatrix();
+    glTranslatef(-2,2,0);
+    glRotatef(65, 1,0,0);
+    paralelepipedoFechado(2.3,4,0.15,0,0,0);
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(-2,2,4);
+    glRotatef(-60, 1,0,0);
+    paralelepipedoFechado(2.2,4,0.15,0,0,0);
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(-2,2,0);
+    glRotatef(-90,0,1,0);
+    trianguloFechado(1,4,0.1, 0,0,0);
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(1.85,2,0);
+    glRotatef(-90,0,1,0);
+    trianguloFechado(1,4,0.1, 0,0,0);
+    glPopMatrix();
 }
 
 // Renderiza o triangulo e rotaciona-o em torno do eixo X e Y
