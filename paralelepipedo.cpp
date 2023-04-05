@@ -147,7 +147,7 @@ void render(){
 			x+lx, y+ly,  z+lz,
 			0.0f, 1.0f,  0.0f);
 
-    glRotatef(angulo, 0, 1, 0);
+    glRotatef(0, 0, 1, 0);
 
 
     laboratorio();
