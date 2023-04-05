@@ -7,8 +7,8 @@
 float angulo = 0.0;
 float angulo2 = 0.0;
 float lx, ly = 0.0f, lz = -1.0f;
-float x = 0.0f, z = 10.0f;
-float y = 0;
+float xOlho = 0.0f, zOlho = 10.0f;
+float yOlho = 0;
 float velocity = 1.0f;
 float delta = 0.1f;
 
@@ -207,8 +207,8 @@ void render(){
     glLoadIdentity();
 
     gluLookAt(
-            x, y, z,
-			x+lx, y+ly,  z+lz,
+            xOlho, yOlho, zOlho,
+			xOlho+lx, yOlho+ly,  zOlho+lz,
 			0.0f, 1.0f,  0.0f);
 
     glRotatef(0, 0, 1, 0);
@@ -261,27 +261,32 @@ void sair(unsigned char tecla, int x, int y){
 }
 
 void moverTeclado(int tecla, int x, int y){
+    double deltaPosicao = 0.1;
+
     switch(tecla){
         case GLUT_KEY_RIGHT :
             angulo += 0.1f;
-            lx = sin(angulo);
-            lz = -cos(angulo);
+            // lx = sin(angulo);
+            // lz = -cos(angulo);
+            xOlho += deltaPosicao;
             break;
 
         case GLUT_KEY_LEFT :
             angulo -= 0.1f;
-            lx = sin(angulo);
-            lz = -cos(angulo);
+            // lx = sin(angulo);
+            // lz = -cos(angulo);
+            xOlho -= deltaPosicao;
             
             
             break;
 
         case GLUT_KEY_UP :
             angulo2 += 0.1f;
-            ly = sin(angulo2);
-            lz = -cos(angulo2);
+            // ly = sin(angulo2);
+            // lz = -cos(angulo2);
             // x += lx * delta;
             // z += lz * delta;
+            zOlho -= deltaPosicao;
             
             break;
 
@@ -289,10 +294,11 @@ void moverTeclado(int tecla, int x, int y){
         case GLUT_KEY_DOWN :
 
             angulo2 -= 0.1f;
-            ly = sin(angulo2);
-            lz = -cos(angulo2);
+            // ly = sin(angulo2);
+            // lz = -cos(angulo2);
             // x -= lx * delta;
             // z -= lz * delta;
+            zOlho += deltaPosicao;
             break;
 
         
