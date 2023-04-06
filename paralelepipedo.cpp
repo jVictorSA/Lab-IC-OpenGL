@@ -7,7 +7,11 @@
 
 float angulo = 0.0;
 float angulo2 = 0.0;
-float lx, ly = 0.0f, lz = -1.0f;
+float lx = 0.0f;
+float ly = 0.0f;
+float lz = -1.0f;
+
+
 float xOlho = 0.0f, zOlho = 10.0f;
 float yOlho = 0;
 float velocity = 1.0f;
@@ -19,7 +23,7 @@ int xOrigin = 0;
 int yOrigin = 0;
 
 void olharProCentro(){
-    lx = -xOlho; ly = -yOlho; lz = -zOlho;
+    lx = -xOlho; ly = -yOlho; lz = -zOlho ;
     xOrigin -= xOlho; yOrigin -= yOlho;
     //(x - xOrigin)
     angulo = 0; angulo2 = 0;
@@ -101,10 +105,11 @@ void moverTeclado(int tecla, int x, int y){
             // lx = sin(angulo);
             // lz = -cos(angulo);
             // xOlho += deltaPosicao;
-            lz = lz/norma;
-            lx = lx/norma;
-            xOlho -= lz;
-            zOlho -= lx;
+           
+            xOlho += -lz;
+            
+            zOlho += lx;
+            
             break;
 
         case GLUT_KEY_LEFT :
@@ -112,11 +117,10 @@ void moverTeclado(int tecla, int x, int y){
             // lx = sin(angulo);
             // lz = -cos(angulo);
             // xOlho -= deltaPosicao;
-            lz = lz/norma;
-            lx = lx/norma;
             
-            xOlho += lz;
-            zOlho += lx;
+            
+            xOlho -= -lz;
+            zOlho -= lx;
             
             
             
@@ -156,6 +160,7 @@ void moverTeclado(int tecla, int x, int y){
 
 void mouseButton(int button, int state, int x, int y) {
 
+    
 	
 	if (button == GLUT_LEFT_BUTTON) {
 
@@ -170,17 +175,27 @@ void mouseButton(int button, int state, int x, int y) {
 			xOrigin = x;
             yOrigin = y;
 		}
+        
 	}
+
+    if(button == GLUT_RIGHT_BUTTON){
+            
+            
+    
+        olharProCentro();
+    }
+   
 }
 
 
 void mouseMove(int x, int y) {
 
-	// this will only be true when the left button is down
-	if (xOrigin >= 0) {
 
 		
 		deltaAngle = (x - xOrigin) * 0.005f;
+        deltaAngle2 = -(y - yOrigin) * 0.005f;
+        // deltaAngle = deltaAngle*3.14/180;
+        // deltaAngle2 = deltaAngle2*3.14/180;
         
 		
 		lx = sin(angulo + deltaAngle);
@@ -190,21 +205,18 @@ void mouseMove(int x, int y) {
         // lx = cos(deltaAngle) * cos(deltaAngle2);
         // ly = sin(deltaAngle2);
 		// lz = sin(deltaAngle)*cos(deltaAngle2);
+        // double norma = sqrt( (lz*lz)+(lx*lx) + ly*ly );
+        // lx = lx/norma;
+        // ly = ly/norma;
+        // lz = lz/norma;
         // std::cout<<deltaAngle<<std::endl;
-        
-        
-	}
 
-    if (yOrigin >= 0) {
-
+    
 		
-		deltaAngle2 = -(y - yOrigin) * 0.005f;
+		ly = sin(angulo2 + deltaAngle2) ;
+		// // lz = -cos(angulo2 + deltaAngle2);
         
-		
-		ly = sin(angulo2 + deltaAngle2);
-		// lz = -cos(angulo2 + deltaAngle2);
-        
-	}
+	
     
 
 }
