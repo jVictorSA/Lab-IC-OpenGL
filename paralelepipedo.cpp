@@ -1,8 +1,9 @@
 //Código referente à um triangulo tridimensional
 
 #include <GL/glut.h>
-
+#include <iostream>
 #include <cmath>
+
 
 float angulo = 0.0;
 float angulo2 = 0.0;
@@ -16,6 +17,8 @@ float deltaAngle = 0.0f;
 float deltaAngle2 = 0.0f;
 int xOrigin = 0;
 int yOrigin = 0;
+
+
 
 // Desenha retângulo
 void retangulo(float x0, float y0, float altura, float largura){
@@ -206,10 +209,12 @@ void render(){
 
     glLoadIdentity();
 
+    
     gluLookAt(
             xOlho, yOlho, zOlho,
 			xOlho+lx, yOlho+ly,  zOlho+lz,
 			0.0f, 1.0f,  0.0f);
+
 
     glRotatef(0, 0, 1, 0);
 
@@ -262,43 +267,60 @@ void sair(unsigned char tecla, int x, int y){
 
 void moverTeclado(int tecla, int x, int y){
     double deltaPosicao = 0.1;
+    double norma = sqrt( (lz*lz)+(lx*lx) );
 
     switch(tecla){
         case GLUT_KEY_RIGHT :
-            angulo += 0.1f;
+            // angulo += 0.1f;
             // lx = sin(angulo);
             // lz = -cos(angulo);
-            xOlho += deltaPosicao;
+            // xOlho += deltaPosicao;
+            lz = lz/norma;
+            lx = lx/norma;
+            xOlho -= lz;
+            zOlho -= lx;
             break;
 
         case GLUT_KEY_LEFT :
-            angulo -= 0.1f;
+            // angulo -= 0.1f;
             // lx = sin(angulo);
             // lz = -cos(angulo);
-            xOlho -= deltaPosicao;
+            // xOlho -= deltaPosicao;
+            lz = lz/norma;
+            lx = lx/norma;
+            
+            xOlho += lz;
+            zOlho += lx;
+            
             
             
             break;
 
         case GLUT_KEY_UP :
-            angulo2 += 0.1f;
+            // angulo2 += 0.1f;
             // ly = sin(angulo2);
             // lz = -cos(angulo2);
             // x += lx * delta;
             // z += lz * delta;
-            zOlho -= deltaPosicao;
+            
+            // zOlho -= deltaPosicao;
+            xOlho += lx;
+            yOlho += ly;
+            zOlho += lz;
             
             break;
 
 
         case GLUT_KEY_DOWN :
 
-            angulo2 -= 0.1f;
+            // angulo2 -= 0.1f;
             // ly = sin(angulo2);
             // lz = -cos(angulo2);
             // x -= lx * delta;
             // z -= lz * delta;
-            zOlho += deltaPosicao;
+            xOlho -= lx;
+            yOlho -= ly;
+            zOlho -= lz;
             break;
 
         
@@ -340,6 +362,13 @@ void mouseMove(int x, int y) {
 		lx = sin(angulo + deltaAngle);
 		lz = -cos(angulo + deltaAngle);
         
+
+        // lx = cos(deltaAngle) * cos(deltaAngle2);
+        // ly = sin(deltaAngle2);
+		// lz = sin(deltaAngle)*cos(deltaAngle2);
+        // std::cout<<deltaAngle<<std::endl;
+        
+        
 	}
 
     if (yOrigin >= 0) {
@@ -352,6 +381,7 @@ void mouseMove(int x, int y) {
 		// lz = -cos(angulo2 + deltaAngle2);
         
 	}
+    
 
 }
 
