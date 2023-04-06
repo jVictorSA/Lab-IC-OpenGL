@@ -26,7 +26,6 @@ void olharProCentro(){
     deltaAngle = 0; deltaAngle2 = 0;
 }
 
-
 // Renderiza o triangulo e rotaciona-o em torno do eixo X e Y
 void render(){
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -95,19 +94,25 @@ void moverTeclado(int tecla, int x, int y){
     double deltaPosicao = 0.1;
     double norma = sqrt( (lz*lz)+(lx*lx) );
 
-    switch(tecla){
-        case GLUT_KEY_RIGHT :
+    //Adicionar 
+    if(glutGetModifiers() == GLUT_ACTIVE_SHIFT){
+        deltaPosicao = 0.5;
+    }
+
+    if (tecla == GLUT_KEY_RIGHT){
+
             // angulo += 0.1f;
             // lx = sin(angulo);
             // lz = -cos(angulo);
             // xOlho += deltaPosicao;
             lz = lz/norma;
             lx = lx/norma;
-            xOlho -= lz;
-            zOlho -= lx;
-            break;
+            xOlho -= lz * deltaPosicao;
+            zOlho -= lx * deltaPosicao;
+    }
 
-        case GLUT_KEY_LEFT :
+    if (tecla == GLUT_KEY_LEFT){
+
             // angulo -= 0.1f;
             // lx = sin(angulo);
             // lz = -cos(angulo);
@@ -115,14 +120,12 @@ void moverTeclado(int tecla, int x, int y){
             lz = lz/norma;
             lx = lx/norma;
             
-            xOlho += lz;
-            zOlho += lx;
-            
-            
-            
-            break;
+            xOlho += lz * deltaPosicao;
+            zOlho += lx * deltaPosicao;
+    }
+    
+    if (tecla == GLUT_KEY_UP){
 
-        case GLUT_KEY_UP :
             // angulo2 += 0.1f;
             // ly = sin(angulo2);
             // lz = -cos(angulo2);
@@ -130,35 +133,25 @@ void moverTeclado(int tecla, int x, int y){
             // z += lz * delta;
             
             // zOlho -= deltaPosicao;
-            xOlho += lx;
-            yOlho += ly;
-            zOlho += lz;
-            
-            break;
-
-
-        case GLUT_KEY_DOWN :
-
+            xOlho += lx * deltaPosicao;
+            yOlho += ly * deltaPosicao;
+            zOlho += lz * deltaPosicao;
+    }
+    
+    if (tecla == GLUT_KEY_DOWN){
             // angulo2 -= 0.1f;
             // ly = sin(angulo2);
             // lz = -cos(angulo2);
             // x -= lx * delta;
             // z -= lz * delta;
-            xOlho -= lx;
-            yOlho -= ly;
-            zOlho -= lz;
-            break;
-
-        
-
+            xOlho -= lx * deltaPosicao;
+            yOlho -= ly * deltaPosicao;
+            zOlho -= lz * deltaPosicao;
     }
 }
 
 void mouseButton(int button, int state, int x, int y) {
-
-	
 	if (button == GLUT_LEFT_BUTTON) {
-
 		
 		if (state == GLUT_UP) {
 			angulo += deltaAngle;
@@ -178,35 +171,25 @@ void mouseMove(int x, int y) {
 
 	// this will only be true when the left button is down
 	if (xOrigin >= 0) {
-
 		
 		deltaAngle = (x - xOrigin) * 0.005f;
-        
 		
 		lx = sin(angulo + deltaAngle);
 		lz = -cos(angulo + deltaAngle);
         
-
         // lx = cos(deltaAngle) * cos(deltaAngle2);
         // ly = sin(deltaAngle2);
 		// lz = sin(deltaAngle)*cos(deltaAngle2);
         // std::cout<<deltaAngle<<std::endl;
-        
-        
 	}
 
     if (yOrigin >= 0) {
 
-		
 		deltaAngle2 = -(y - yOrigin) * 0.005f;
-        
-		
+        		
 		ly = sin(angulo2 + deltaAngle2);
 		// lz = -cos(angulo2 + deltaAngle2);
-        
 	}
-    
-
 }
 
 
