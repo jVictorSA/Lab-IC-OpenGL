@@ -1,6 +1,7 @@
 #ifndef CENA_HPP
 #define CENA_HPP
 #include "primitivas.hpp"
+#include "ventilador.hpp"
 
 void laboratorio(){
     
@@ -49,6 +50,14 @@ void laboratorio(){
     glRotatef(-90,0,1,0);
     trianguloFechado(1,4,0.1, 0,0,0);
     glPopMatrix();
+
+
+    
+    Ventilador ventilador1(1,1.2,1.4);
+    Ventilador ventilador2(-1,1.2,1.4);
+    ventilador1.desenhaVentilador();
+    ventilador2.desenhaVentilador();
+    
 }
 
 #endif
