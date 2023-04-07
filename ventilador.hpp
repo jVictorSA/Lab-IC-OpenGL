@@ -1,4 +1,4 @@
-
+#include "cores.hpp"
 
 
 class Ventilador{
@@ -12,7 +12,7 @@ class Ventilador{
             glPushMatrix();
             glTranslatef(xHaste,yHaste,zHaste);
             glRotatef(-90,0,1,0);
-            paralelepipedoFechado(1.5,0.1,0.1, 0,0,0);
+            paralelepipedoFechado(1.5,0.1,0.1, 0,0,0,rosa);
             glPopMatrix();
 
 

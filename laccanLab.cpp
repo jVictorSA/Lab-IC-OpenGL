@@ -5,6 +5,8 @@
 #include "primitivas.hpp"
 #include "cena.hpp"
 
+const int BARRA_DE_ESPAÇO = 32;
+
 float angulo = 0.0;
 float angulo2 = 0.0;
 float lx, ly = 0.0f, lz = -1.0f;
@@ -83,6 +85,8 @@ void mudaTamJanela(int largura, int altura){
 void teclasEspeciais(unsigned char tecla, int x, int y){
     if(tecla == 'r' || tecla == 'R'){ olharProCentro(); }
     if(tecla == 'q' || tecla == 'Q'){ exit(0); }
+    if(tecla == BARRA_DE_ESPAÇO){yOlho += 0.07; }       //Sobe a câmera
+    if(tecla == 'z' || tecla == 'Z'){yOlho -= 0.07; }   //Desce a câmera
 }
 
 void moverTeclado(int tecla, int x, int y){
@@ -93,8 +97,10 @@ void moverTeclado(int tecla, int x, int y){
     //Ocasionando numa translação demasiada rápida
     double norma = sqrt( (lz*lz)+(lx*lx) );
 
+    int teclaEspecial = glutGetModifiers();
+
     //Adiciona boost na movimentação da câmera quando o shift é pressionado
-    if(glutGetModifiers() == GLUT_ACTIVE_SHIFT){
+    if(teclaEspecial == GLUT_ACTIVE_SHIFT){
         deltaPosicao = 0.5;
     }
 
@@ -187,6 +193,8 @@ void mouseMove(int x, int y) {
 		// lz = -cos(angulo2 + deltaAngle2);        
 	}    
 }
+
+
 
 
 int main (int argc, char **argv){
