@@ -4,6 +4,7 @@
 
 #include "primitivas.hpp"
 #include "cena.hpp"
+#include "armarios.hpp"
 
 const int BARRA_DE_ESPAÇO = 32;
 
@@ -27,7 +28,6 @@ void olharProCentro(){
     deltaAngle = 0; deltaAngle2 = 0;
 }
 
-
 // Renderiza a cena
 void render(){
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -39,11 +39,12 @@ void render(){
 			xOlho+lx, yOlho+ly,  zOlho+lz,
 			0.0f, 1.0f,  0.0f);
 
-    glRotatef(0, 0, 1, 0);
-
     laboratorio();
-    
-    glEnd();
+
+    // Armario armario(2,3,1);
+
+    // armario.desenhar();
+
 
     glutSwapBuffers();
 }
