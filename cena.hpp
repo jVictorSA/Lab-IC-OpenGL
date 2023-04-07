@@ -31,7 +31,7 @@ void laboratorio(){
     
     // Desenha Teto
     glPushMatrix();
-    teto(2,7,10,0,0,0, branco, vermelho);
+    teto(2,7,10,0,0,0, azul, vermelho);
     glPopMatrix();
 
     glPushMatrix();
@@ -40,11 +40,13 @@ void laboratorio(){
     glPopMatrix();
 
     
+    glPushMatrix();
+    glTranslatef(0,1,-2.5);
     Ventilador ventilador1(1,1.2,1.4);
     Ventilador ventilador2(-1,1.2,1.4);
     ventilador1.desenhaVentilador();
     ventilador2.desenhaVentilador();
-    
+    glPopMatrix();
 }
 
 #endif
