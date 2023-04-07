@@ -28,7 +28,7 @@ class Ventilador{
             glTranslatef(xHaste+0.15,yHaste-0.1,zHaste + 0.15);
             glRotatef(90,0,0,1);
             glRotatef(90,1,0,0);
-            trianguloFechado(0.7, 0.1, 0.2,0,0,0,azul);
+            trianguloFechado(0.7, 0.1, 0.2,0,0,0,branco);
             glPopMatrix();
 
 

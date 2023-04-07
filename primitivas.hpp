@@ -2,6 +2,21 @@
 #define PRIMITIVAS_HPP
 #include <GL/glut.h>
 #include <vector>
+
+// Desenha um retângulo, mas do mesmo modo de nossas outras primitivas
+void retangulo(float altura, float largura,
+               float xInicial, float yInicial, float zInicial,
+               const std::vector<float> cor){
+    
+    glBegin(GL_QUADS);
+            glColor3f(cor[0],cor[1],cor[2]);           //Vermelho
+            glVertex3f(xInicial, yInicial,  zInicial);
+            glVertex3f(xInicial + largura, yInicial,  zInicial);
+            glVertex3f(xInicial + largura, yInicial + altura,  zInicial);
+            glVertex3f(xInicial,  yInicial + altura,  zInicial);
+    glEnd();
+}
+
 // Desenha paralelepipedo aberto
 void paralelepipedoAberto(float altura, float largura, float profundidade,
                           float xInicial, float yInicial, float zInicial,

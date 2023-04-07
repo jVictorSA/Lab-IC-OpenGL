@@ -52,6 +52,9 @@ void render(){
 }
 
 void inicializar(){
+    // Adicionar iluminação, depois vemo isso aí
+    // glEnable(GL_LIGHTING);
+    // glEnable(GL_LIGHT1);
 
     // Habilita o teste de profundidade para evitar sobrepor objetos
     glEnable(GL_DEPTH_TEST);
