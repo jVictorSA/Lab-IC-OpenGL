@@ -6,6 +6,8 @@
 #include "cena.hpp"
 #include "armarios.hpp"
 
+Armario armario(2,3,1);
+
 const int BARRA_DE_ESPAÇO = 32;
 
 float angulo = 0.0;
@@ -41,8 +43,7 @@ void render(){
 
     laboratorio();
 
-    // Armario armario(2,3,1);
-
+    // Descomente para testar o armário
     // armario.desenhar();
 
 
@@ -88,6 +89,7 @@ void teclasEspeciais(unsigned char tecla, int x, int y){
     if(tecla == 'q' || tecla == 'Q'){ exit(0); }
     if(tecla == BARRA_DE_ESPAÇO){yOlho += 0.07; }       //Sobe a câmera
     if(tecla == 'z' || tecla == 'Z'){yOlho -= 0.07; }   //Desce a câmera
+    if(tecla == 'f' || tecla == 'F'){ armario.abrirOuFecharPorta(); }   // Abre ou fecha armário
 }
 
 void moverTeclado(int tecla, int x, int y){
