@@ -4,13 +4,14 @@
 #include "primitivas.hpp"
 #include "ventilador.hpp"
 #include "cores.hpp"
+#include "teto.hpp"
 
 void laboratorio(){
     
     // //Paredes e piso
     glPushMatrix();
-    glTranslatef(-2,-2,0);
-    paralelepipedoFechado(4,4,0.15,0,0,0,branco);
+    glTranslatef(-3.5 - 0.15,-2,-6);
+    paralelepipedoFechado(4,7.3,0.15,0,0,0,branco);
     glPopMatrix();
 
     glPushMatrix();
@@ -19,38 +20,18 @@ void laboratorio(){
     glPopMatrix();
 
     glPushMatrix();
-    glTranslatef(-2,-2,4);
-    paralelepipedoFechado(4,0.15,4,0,0,0,verde);
+    glTranslatef(-3.5 - 0.15,-2,4);
+    paralelepipedoFechado(4,0.15,10,0,0,0,verde);
     glPopMatrix();
 
     glPushMatrix();
-    glTranslatef(1.85, -2, 4);
-    paralelepipedoFechado(4,0.15,4, 0,0,0,azul);
+    glTranslatef(3.5, -2, 4);
+    paralelepipedoFechado(4,0.15,10, 0,0,0,azul);
     glPopMatrix();
     
     // Desenha Teto
     glPushMatrix();
-    glTranslatef(-2,2,0);
-    glRotatef(65, 1,0,0);
-    paralelepipedoFechado(2.3,4,0.15,0,0,0,vermelho);
-    glPopMatrix();
-
-    glPushMatrix();
-    glTranslatef(-2,2,4);
-    glRotatef(-60, 1,0,0);
-    paralelepipedoFechado(2.2,4,0.15,0,0,0,verde);
-    glPopMatrix();
-
-    glPushMatrix();
-    glTranslatef(-2,2,0);
-    glRotatef(-90,0,1,0);
-    trianguloFechado(1,4,0.1, 0,0,0,azul);
-    glPopMatrix();
-
-    glPushMatrix();
-    glTranslatef(1.85,2,0);
-    glRotatef(-90,0,1,0);
-    trianguloFechado(1,4,0.1, 0,0,0,branco);
+    teto(2,7,10,0,0,0, branco, vermelho);
     glPopMatrix();
 
     glPushMatrix();
