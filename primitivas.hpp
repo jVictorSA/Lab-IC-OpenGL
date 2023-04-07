@@ -9,11 +9,11 @@ void retangulo(float altura, float largura,
                const std::vector<float> cor){
     
     glBegin(GL_QUADS);
-            glColor3f(cor[0],cor[1],cor[2]);           //Vermelho
-            glVertex3f(xInicial, yInicial,  zInicial);
-            glVertex3f(xInicial + largura, yInicial,  zInicial);
-            glVertex3f(xInicial + largura, yInicial + altura,  zInicial);
-            glVertex3f(xInicial,  yInicial + altura,  zInicial);
+        glColor3f(cor[0],cor[1],cor[2]);
+        glVertex3f(xInicial, yInicial,  zInicial);
+        glVertex3f(xInicial + largura, yInicial,  zInicial);
+        glVertex3f(xInicial + largura, yInicial + altura,  zInicial);
+        glVertex3f(xInicial,  yInicial + altura,  zInicial);
     glEnd();
 }
 
@@ -21,11 +21,11 @@ void retangulo(float altura, float largura,
 void paralelepipedoAberto(float altura, float largura, float profundidade,
                           float xInicial, float yInicial, float zInicial,
                           const std::vector<float> cor){
-    //Se retirar os glBegin(GL_TRIANGLES), o que de errado pode acontecer??
+    
+    glColor3f(cor[0],cor[1],cor[2]);
     glBegin(GL_POLYGON);
         // Face da frente
         glBegin(GL_QUADS);
-            glColor3f(cor[0],cor[1],cor[2]);           //Vermelho
             glVertex3f(xInicial, yInicial,  zInicial);
             glVertex3f(xInicial + largura, yInicial,  zInicial);
             glVertex3f(xInicial + largura, yInicial + altura,  zInicial);
@@ -34,7 +34,6 @@ void paralelepipedoAberto(float altura, float largura, float profundidade,
 
         //Face de trás
         glBegin(GL_QUADS);
-            glColor3f(0,1,0);           //Verde
             glVertex3f(xInicial, yInicial,  zInicial - profundidade);
             glVertex3f(xInicial + largura, yInicial,  zInicial - profundidade);
             glVertex3f(xInicial + largura, yInicial + altura,  zInicial - profundidade);
@@ -43,7 +42,6 @@ void paralelepipedoAberto(float altura, float largura, float profundidade,
 
         // Face de baixo
         glBegin(GL_QUADS);
-            glColor3f(0,0,1);           //Azul
             glVertex3f(xInicial, yInicial,  zInicial - profundidade);
             glVertex3f(xInicial, yInicial,  zInicial);
             glVertex3f(xInicial + largura, yInicial,  zInicial);
@@ -52,7 +50,6 @@ void paralelepipedoAberto(float altura, float largura, float profundidade,
 
         // Face de cima
         glBegin(GL_QUADS);
-            glColor3f(1,1,0);           //Amarelo
             glVertex3f(xInicial, yInicial + altura,  zInicial - profundidade);
             glVertex3f(xInicial, yInicial + altura,  zInicial);
             glVertex3f(xInicial + largura, yInicial + altura,  zInicial);
@@ -160,7 +157,6 @@ void trianguloFechado(float altura, float largura, float profundidade,
         glVertex3f(xInicial, yInicial,  zInicial);
         glVertex3f(xInicial, yInicial,  zInicial - profundidade);
     glEnd();
-
 }
 
 #endif

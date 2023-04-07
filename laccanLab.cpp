@@ -22,9 +22,7 @@ int yOrigin = 0;
 
 void olharProCentro(){
     lx = -xOlho; ly = -yOlho; lz = -zOlho;
-    //lx = -xOlho; ly = -yOlho; lz = -zOlho;
     xOrigin -= xOlho; yOrigin -= yOlho;
-    //(x - xOrigin)
     angulo = 0; angulo2 = 0;
     deltaAngle = 0; deltaAngle2 = 0;
 }
@@ -39,7 +37,6 @@ void render(){
     gluLookAt(
             xOlho, yOlho, zOlho,
 			xOlho+lx, yOlho+ly,  zOlho+lz,
-            //0,0,0,
 			0.0f, 1.0f,  0.0f);
 
     glRotatef(0, 0, 1, 0);
