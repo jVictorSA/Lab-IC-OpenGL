@@ -7,3 +7,7 @@ Repositório referente à AB1 de Computação gráfica. O trabalho consiste em u
 ## Execução
 * Execute ```./<nome_do_programa>```  
 (No momento o makefile só compila para Linux)
+
+## Programa até então
+
+![Alt text](imgs/Cena.png "Cena")
