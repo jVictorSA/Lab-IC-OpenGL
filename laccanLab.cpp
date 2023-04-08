@@ -5,8 +5,10 @@
 #include "primitivas.hpp"
 #include "cena.hpp"
 #include "armarios.hpp"
+#include "persiana.hpp"
 
 Armario armario(2,3,1);
+Persiana persiana(3, 3, 0.5, 0.05, 0.5);
 
 
 const int BARRA_DE_ESPAÇO = 32;
@@ -47,6 +49,9 @@ void render(){
     // Descomente para testar o armário
     // armario.desenhar();
 
+
+    // Descomente para testar a persiana
+    //persiana.desenhar();
 
     glutSwapBuffers();
 }
@@ -91,6 +96,7 @@ void teclasEspeciais(unsigned char tecla, int x, int y){
     if(tecla == BARRA_DE_ESPAÇO){yOlho += 0.07; }       //Sobe a câmera
     if(tecla == 'z' || tecla == 'Z'){yOlho -= 0.07; }   //Desce a câmera
     if(tecla == 'f' || tecla == 'F'){ armario.abrirOuFecharPorta(); }   // Abre ou fecha armário
+    if(tecla == 'p' || tecla == 'P'){ persiana.abrirOuFecharPersiana(); }   // Abre ou fecha armário
 }
 
 void moverTeclado(int tecla, int x, int y){
