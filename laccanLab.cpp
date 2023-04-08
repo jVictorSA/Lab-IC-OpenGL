@@ -8,6 +8,7 @@
 
 Armario armario(2,3,1);
 
+
 const int BARRA_DE_ESPAÇO = 32;
 
 float angulo = 0.0;

@@ -6,6 +6,7 @@
 #include "cores.hpp"
 #include "teto.hpp"
 
+
 void laboratorio(){
     
     // //Paredes e piso
@@ -124,13 +125,16 @@ void laboratorio(){
     glPopMatrix();
 
     // Desenha ventiladores
-    glPushMatrix();
-        glTranslatef(0,1,-2.5);
+    
+        
         Ventilador ventilador1(1,1.2,1.4);
         Ventilador ventilador2(-1,1.2,1.4);
         ventilador1.desenhaVentilador();
         ventilador2.desenhaVentilador();
-    glPopMatrix();
+       
+    
+
+    
 }
 
 #endif
