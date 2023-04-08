@@ -4,19 +4,19 @@
 
 using std::vector;
 
-const vector<float> branco = {1,1,1};
-const vector<float> vermelho = {1,0,0};
-const vector<float> verde = {0,1,0};
-const vector<float> azul = {0,0,1};
-const vector<float> rosa = {1,0,1};
-const vector<float> Aquamarine = {0.439216, 0.858824,0.576471};
-const vector<float> BlueViolet = {0.62352, 0.372549, 0.623529};
-const vector<float> Brown =  {0.647059, 0.164706, 0.164706};
-const vector<float> CadetBlue = {0.372549, 0.623529, 0.623529};
-const vector<float> Yellow = {1,1,0};
-const vector<float> Cyan = {0, 1, 1};
+const vector<float> branco = {1,1,1,1};
+const vector<float> vermelho = {1,0,0,1};
+const vector<float> verde = {0,1,0,1};
+const vector<float> azul = {0,0,1,0.1};
+const vector<float> rosa = {1,0,1,1};
+const vector<float> Aquamarine = {0.439216, 0.858824,0.576471,1};
+const vector<float> BlueViolet = {0.62352, 0.372549, 0.623529,1};
+const vector<float> Brown =  {0.647059, 0.164706, 0.164706,1};
+const vector<float> CadetBlue = {0.372549, 0.623529, 0.623529,1};
+const vector<float> Yellow = {1,1,0,1};
+const vector<float> Cyan = {0, 1, 1,1};
 const vector<float> Transparente = {1, 1, 1, 0.1};
-const vector<float> Black = {0,0,0};
+const vector<float> Black = {0,0,0,1};
 
 // const vector<float> Coral = color red 1.0 green 0.498039 blue 0.0
 // const vector<float> CornflowerBlue = color red 0.258824 green 0.258824 blue 0.435294

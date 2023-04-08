@@ -22,7 +22,7 @@ void paralelepipedoAberto(float altura, float largura, float profundidade,
                           float xInicial, float yInicial, float zInicial,
                           const std::vector<float> cor){
     
-    glColor3f(cor[0],cor[1],cor[2]);
+    glColor4f(cor[0],cor[1],cor[2], cor[3]);
     glBegin(GL_POLYGON);
         // Face da frente
         glBegin(GL_QUADS);
@@ -63,8 +63,7 @@ void paralelepipedoFechado(float altura, float largura, float profundidade,
                            float xInicial, float yInicial, float zInicial,
                            const std::vector<float> cor){
 
-        
-    glColor3f(cor[0],cor[1],cor[2]);
+    glColor4f(cor[0],cor[1],cor[2], cor[3]);
     glBegin(GL_POLYGON);
         // Face da frente
         glBegin(GL_QUADS);
@@ -124,7 +123,7 @@ void trianguloFechado(float altura, float largura, float profundidade,
                       float xInicial, float yInicial, float zInicial,
                       const std::vector<float> cor){
 
-    glColor3f(cor[0],cor[1],cor[2]);                        
+    glColor4f(cor[0],cor[1],cor[2], cor[3]);            
     glBegin(GL_TRIANGLES);
         glVertex3f(xInicial, yInicial,  zInicial);
         glVertex3f(xInicial + largura / 2, yInicial + altura,  zInicial);
