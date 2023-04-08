@@ -7,11 +7,17 @@
 #include "matematica.hpp"
 
 // Valor do angulo que a persiana deve se mexer
-float anguloPersiana = 45;
+float anguloPersiana = 60;
 
 //Magnitude do movimento que deve ser incrementado ao angulo da persiana
 float movimentoAberturaPersiana = 0.2;
 
+vector<vector<float>> cores{Transparente, branco, vermelho, verde, azul,rosa,
+                            Yellow, Cyan, Black,
+                            Aquamarine, BlueViolet, Brown, CadetBlue};
+
+
+// Persiana que fica nas janelas do laboratório
 class Persiana{
     private: 
     float largura, altura, profundidade, larguraLamina, alturaSuporte;
@@ -31,7 +37,7 @@ class Persiana{
             
             anguloPersiana += movimentoAberturaPersiana;
 
-            anguloPersiana = clamp<float>(anguloPersiana, 0.0, 45.0);
+            anguloPersiana = clamp<float>(anguloPersiana, 0.0, 50.0);
 
             glPushMatrix();
                 paralelepipedoFechado(alturaSuporte,largura, profundidade, 0,0,0, branco);
@@ -42,11 +48,11 @@ class Persiana{
                     paralelepipedoFechado(altura-alturaSuporte, larguraLamina, profundidade, 0,0,0, vermelho);
                 glPopMatrix();
                 
-                for(int i = 0; i < int(largura/(larguraLamina*3.5)) -1; i++){
-                    glTranslatef(larguraLamina*3.5, 0, 0);
+                for(int i = 0; i < int(largura/(larguraLamina*2.5)) -1; i++){
+                    glTranslatef(larguraLamina*2.5, 0, 0);
                     glPushMatrix();
                         glRotatef(anguloPersiana,0,1,0);
-                        paralelepipedoFechado(altura-alturaSuporte, larguraLamina, profundidade, 0,0,0, vermelho);
+                        paralelepipedoFechado(altura-alturaSuporte, larguraLamina, profundidade, 0,0,0, cores[i%13]);
                     glPopMatrix();
                 }
             glPopMatrix();

@@ -7,9 +7,11 @@
 #include "armarios.hpp"
 #include "persiana.hpp"
 
-Armario armario(2,3,1);
-Persiana persiana(3, 3, 0.5, 0.05, 0.5);
+ArmarioSuspenso armario(2,4.5,2.7);
 
+ArmarioDeChao armarioDeChao(2,3.75, 1);
+
+Persiana persiana(3, 3, 0.5, 0.03, 0.5);
 
 const int BARRA_DE_ESPAÇO = 32;
 
@@ -26,6 +28,7 @@ float deltaAngle2 = 0.0f;
 int xOrigin = 0;
 int yOrigin = 0;
 
+// Aponta a câmera para a origem da cena.
 void olharProCentro(){
     lx = -xOlho; ly = -yOlho; lz = -zOlho;
     xOrigin -= xOlho; yOrigin -= yOlho;
@@ -44,13 +47,17 @@ void render(){
 			xOlho+lx, yOlho+ly,  zOlho+lz,
 			0.0f, 1.0f,  0.0f);
 
+    // // Cena principal
     laboratorio();
 
-    // Descomente para testar o armário
+    // // Descomente para testar o armário suspenso
     // armario.desenhar();
 
+    // // Descomente para testar o armário de chão
+    // armarioDeChao.desenhar();
 
-    // Descomente para testar a persiana
+
+    // // Descomente para testar a persiana
     //persiana.desenhar();
 
     glutSwapBuffers();
@@ -64,7 +71,20 @@ void inicializar(){
     // Habilita o teste de profundidade para evitar sobrepor objetos
     glEnable(GL_DEPTH_TEST);
 
-    glClearColor(0.0, 0.0, 0.0, 0.0);
+    // Bright white light – full intensity RGB values
+    // GLfloat ambientLight[] = { 0.5f, 0.5f, 0.5f, 1.0f };
+    // // Enable lighting
+    // glEnable(GL_LIGHTING);
+
+    // // Set light model to use ambient light specified by ambientLight[]
+    // glLightModelfv(GL_LIGHT_MODEL_AMBIENT,ambientLight);
+
+    // // Enable color tracking
+    // glEnable(GL_COLOR_MATERIAL);
+    // // Front material ambient and diffuse colors track glColor
+    // glColorMaterial(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE);
+
+    glClearColor(0.2, 0.3, 0.4, 0.0);
 }
 
 // Permite alterar o tamanho da janela, recalculando
@@ -91,12 +111,14 @@ void mudaTamJanela(int largura, int altura){
 // x e y são paramêtros necessárias caso queiramos
 // usar a coordenada do mouse no momento da chamada desta callback
 void teclasEspeciais(unsigned char tecla, int x, int y){
-    if(tecla == 'r' || tecla == 'R'){ olharProCentro(); }
+    if(tecla == 'c' || tecla == 'C'){ olharProCentro(); } // Aponta a câmera para a origem da cena
     if(tecla == 'q' || tecla == 'Q'){ exit(0); }
-    if(tecla == BARRA_DE_ESPAÇO){yOlho += 0.07; }       //Sobe a câmera
+    if(tecla == BARRA_DE_ESPAÇO)    {yOlho += 0.07; }   //Sobe a câmera
     if(tecla == 'z' || tecla == 'Z'){yOlho -= 0.07; }   //Desce a câmera
     if(tecla == 'f' || tecla == 'F'){ armario.abrirOuFecharPorta(); }   // Abre ou fecha armário
-    if(tecla == 'p' || tecla == 'P'){ persiana.abrirOuFecharPersiana(); }   // Abre ou fecha armário
+    if(tecla == 'e' || tecla == 'E'){ armarioDeChao.abrirOuFecharPortaEsq(); }   // Abre ou fecha armário
+    if(tecla == 'r' || tecla == 'R'){ armarioDeChao.abrirOuFecharPortaDir(); }   // Abre ou fecha armário
+    if(tecla == 'p' || tecla == 'P'){ persiana.abrirOuFecharPersiana(); }   // Abre ou fecha persiana
 }
 
 void moverTeclado(int tecla, int x, int y){
@@ -109,7 +131,7 @@ void moverTeclado(int tecla, int x, int y){
 
     int teclaEspecial = glutGetModifiers();
 
-    //Adiciona boost na movimentação da câmera quando o shift é pressionado
+    //Adiciona boost na movimentação da câmera quando o shift é pressionado ou CAPS LOCK é ativado
     if(teclaEspecial == GLUT_ACTIVE_SHIFT){
         deltaPosicao = 0.5;
     }
@@ -160,10 +182,7 @@ void moverTeclado(int tecla, int x, int y){
 }
 
 void mouseButton(int button, int state, int x, int y) {
-
-	
 	if (button == GLUT_LEFT_BUTTON) {
-
 		
 		if (state == GLUT_UP) {
 			angulo += deltaAngle;
@@ -210,7 +229,7 @@ void mouseMove(int x, int y) {
 int main (int argc, char **argv){
     glutInit(&argc, argv);
     
-    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
+    glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
 
     glutInitWindowSize(800, 600);
 
