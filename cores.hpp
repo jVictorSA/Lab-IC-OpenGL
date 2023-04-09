@@ -17,6 +17,7 @@ const vector<float> Yellow = {1,1,0,1};
 const vector<float> Cyan = {0, 1, 1,1};
 const vector<float> Transparente = {1, 1, 1, 0.1};
 const vector<float> Black = {0,0,0,1};
+const vector<float> cinza = {0.5,0.5,0.5,1};
 
 // const vector<float> Coral = color red 1.0 green 0.498039 blue 0.0
 // const vector<float> CornflowerBlue = color red 0.258824 green 0.258824 blue 0.435294

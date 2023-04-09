@@ -5,6 +5,7 @@
 #include "ventilador.hpp"
 #include "cores.hpp"
 #include "teto.hpp"
+#include "luz.hpp"
 
 
 void laboratorio(){
@@ -131,6 +132,10 @@ void laboratorio(){
         Ventilador ventilador2(-1,1.2,1.4);
         ventilador1.desenhaVentilador();
         ventilador2.desenhaVentilador();
+        Luz luz1(1,2,-1.0);
+        Luz luz2(-1,2,-1.0);
+        luz1.desenhaLuz();
+        luz2.desenhaLuz();
        
     
 
