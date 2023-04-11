@@ -29,6 +29,8 @@ O ```ALT``` desligado significa que o lado esquerdo do objeto (exemplo porta esq
 * Aperte ```J``` para abrir a janela
 * Aperte ```P``` para abrir a persiana
 
+* Aperte ```F1-F8``` para abrir os armários suspensos nas paredes
+
 ## Imagens
 
 ### Inicio
