@@ -11,6 +11,7 @@
 #include "janela.hpp"
 #include "porta.hpp"
 #include "quadro.hpp"
+#include "mesa.hpp"
 
 namespace Cena{
         
