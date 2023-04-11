@@ -6,6 +6,7 @@
 #include "cores.hpp"
 #include "teto.hpp"
 #include "luz.hpp"
+#include "mesa.hpp"
 
 
 void laboratorio(){
@@ -136,7 +137,19 @@ void laboratorio(){
         Luz luz2(-1,2,-1.0);
         luz1.desenhaLuz();
         luz2.desenhaLuz();
-       
+        Mesa mesa(2,20,0, -1.5, -0.6);
+        Mesa mesa1(2,20,0, -1.5, -0.59);
+        Mesa mesa2(2,20,0, -1.5, -0.58);
+        Mesa mesa3(2,20,0, -1.5, -0.57);
+        Mesa mesa4(2,20,0, -1.5, -0.56);
+        Mesa mesa5(2,20,0, -1.5, -0.55);
+        
+        mesa.desenhaMesa();
+        mesa1.desenhaMesa();
+        mesa2.desenhaMesa();
+        mesa3.desenhaMesa();
+        mesa4.desenhaMesa();
+        mesa5.desenhaMesa();
     
 
     

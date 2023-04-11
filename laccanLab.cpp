@@ -39,6 +39,7 @@ void olharProCentro(){
     deltaAngle = 0; deltaAngle2 = 0;
 }
 
+
 // Renderiza a cena
 void render(){
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -51,7 +52,7 @@ void render(){
 			0.0f, 1.0f,  0.0f);
 
     // // Cena principal
-    //laboratorio();
+    laboratorio();
 
     // // Descomente para testar o armário suspenso
     // armario.desenhar();
@@ -64,8 +65,9 @@ void render(){
     //persiana.desenhar();
 
     // Descomente para testar a janela
-    janela.desenhar();
+    // janela.desenhar();
 
+    
     glutSwapBuffers();
 }
 
