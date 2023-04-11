@@ -23,13 +23,13 @@ Repositório referente à AB1 de Computação gráfica. O trabalho consiste em u
 OBS: A tecla ```ALT``` altera se o lado esquerdo ou direito do objeto em questão será movimento  
 O ```ALT``` desligado significa que o lado esquerdo do objeto (exemplo porta esquerda ou janela esquerda) estará sujeito a interações e vive-versa  
 
-* Aperte ```O``` para abrir a porta do laboratório
-* Aperte ```E``` para abrir a porta do armário da esquerda
-* Aperte ```R``` para abrir a porta do armário da direita
-* Aperte ```J``` para abrir a janela
-* Aperte ```P``` para abrir a persiana
+* Aperte ```O``` para abrir/fechar a porta do laboratório
+* Aperte ```E``` para abrir/fechar a porta do armário da esquerda
+* Aperte ```R``` para abrir/fechar a porta do armário da direita
+* Aperte ```J``` para abrir/fechar a janela
+* Aperte ```P``` para abrir/fechar a persiana
 
-* Aperte ```F1-F8``` para abrir os armários suspensos nas paredes
+* Aperte ```F1-F8``` para abrir/fechar os armários suspensos nas paredes
 
 ## Imagens
 
