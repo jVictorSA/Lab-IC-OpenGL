@@ -6,60 +6,63 @@
 #include "cores.hpp"
 #include "matematica.hpp"
 
-// Valor do angulo que a persiana deve se mexer
-float anguloPersiana = 60;
-
-//Magnitude do movimento que deve ser incrementado ao angulo da persiana
-float movimentoAberturaPersiana = 0.2;
-
-vector<vector<float>> cores{Transparente, branco, vermelho, verde, azul,rosa,
-                            Yellow, Cyan, Black,
-                            Aquamarine, BlueViolet, Brown, CadetBlue};
-
-
 // Persiana que fica nas janelas do laboratório
 class Persiana{
     private: 
     float largura, altura, profundidade, larguraLamina, alturaSuporte;
+    int quantidadadeLaminas;
+
+    // Valor do angulo que a persiana deve se mexer
+    float anguloPersiana = 60;
+
+    //Magnitude do movimento que deve ser incrementado ao angulo da persiana
+    float movimentoAberturaPersiana = 0.2;
+
+    std::vector<float> corSuporte, corLamina;
 
     public:
-        Persiana(float larg, float alt, float prof, float largLam, float altSup){
+        Persiana(float larg, float alt, float prof, float largLam, float altSup, int qLam, std::vector<float> corS, std::vector<float> corL){
             largura = larg;
             altura = alt;
             profundidade = prof;
             larguraLamina = largLam;
             alturaSuporte = altSup;
+            quantidadadeLaminas = qLam;
+            corSuporte = corS;
+            corLamina = corL;
         }
 
         void desenhar(){
-            // Centralização
-            glTranslatef(-largura/2, altura/2, profundidade/2);
-            
-            anguloPersiana += movimentoAberturaPersiana;
-
-            anguloPersiana = clamp<float>(anguloPersiana, 0.0, 50.0);
-
             glPushMatrix();
-                paralelepipedoFechado(alturaSuporte,largura, profundidade, 0,0,0, branco);
-                glTranslatef(larguraLamina, - (altura-alturaSuporte), - profundidade*0.05);
+                // Centralização
+                glTranslatef(-largura/2, altura/2, profundidade/2);
                 
+                anguloPersiana += movimentoAberturaPersiana;
+
+                anguloPersiana = clamp<float>(anguloPersiana, 0.0, 50.0);
+
                 glPushMatrix();
-                    glRotatef(anguloPersiana,0,1,0);
-                    paralelepipedoFechado(altura-alturaSuporte, larguraLamina, profundidade, 0,0,0, vermelho);
-                glPopMatrix();
-                
-                for(int i = 0; i < int(largura/(larguraLamina*2.5)) -1; i++){
-                    glTranslatef(larguraLamina*2.5, 0, 0);
+                    paralelepipedoFechado(alturaSuporte,largura, profundidade, 0,0,0, corSuporte);
+                    glTranslatef(larguraLamina, - (altura-alturaSuporte), - profundidade*0.05);
+                    
                     glPushMatrix();
                         glRotatef(anguloPersiana,0,1,0);
-                        paralelepipedoFechado(altura-alturaSuporte, larguraLamina, profundidade, 0,0,0, cores[i%13]);
+                        paralelepipedoFechado(altura-alturaSuporte, larguraLamina, profundidade, 0,0,0, corLamina);
                     glPopMatrix();
-                }
+                    
+                    for(int i = 0; i < quantidadadeLaminas-1; i++){
+                        glTranslatef(largura/quantidadadeLaminas, 0, 0);
+                        glPushMatrix();
+                            glRotatef(anguloPersiana,0,1,0);
+                            paralelepipedoFechado(altura-alturaSuporte, larguraLamina, profundidade, 0,0,0, corLamina);
+                        glPopMatrix();
+                    }
+                glPopMatrix();
             glPopMatrix();
         }
 
         void abrirOuFecharPersiana(){
-            // Inverte a movimentação da porta para que ela abra ou feche
+            // Inverte a movimentação da persiana para que ela abra ou feche
             movimentoAberturaPersiana *= -1;
 
         }

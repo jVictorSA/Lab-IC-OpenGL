@@ -8,13 +8,6 @@
 #include "persiana.hpp"
 #include "janela.hpp"
 
-ArmarioSuspenso armario(2,4.5,2.7);
-
-ArmarioDeChao armarioDeChao(2,3.75, 1);
-
-Persiana persiana(3, 3, 0.5, 0.03, 0.5);
-
-Janela janela(3,3,0.3, Aquamarine, Black);
 
 const int BARRA_DE_ESPAÇO = 32;
 
@@ -52,7 +45,7 @@ void render(){
 			0.0f, 1.0f,  0.0f);
 
     // // Cena principal
-    laboratorio();
+    Cena::laboratorio();
 
     // // Descomente para testar o armário suspenso
     // armario.desenhar();
@@ -65,9 +58,8 @@ void render(){
     //persiana.desenhar();
 
     // Descomente para testar a janela
-    // janela.desenhar();
+    //janela.desenhar();
 
-    
     glutSwapBuffers();
 }
 
@@ -106,11 +98,13 @@ void teclasEspeciais(unsigned char tecla, int x, int y){
     if(tecla == 'q' || tecla == 'Q'){ exit(0); }
     if(tecla == BARRA_DE_ESPAÇO)    {yOlho += 0.07; }   //Sobe a câmera
     if(tecla == 'z' || tecla == 'Z'){yOlho -= 0.07; }   //Desce a câmera
-    if(tecla == 'f' || tecla == 'F'){ armario.abrirOuFecharPorta(); }   // Abre ou fecha armário
-    if(tecla == 'e' || tecla == 'E'){ armarioDeChao.abrirOuFecharPortaEsq(); }   // Abre ou fecha armário
-    if(tecla == 'r' || tecla == 'R'){ armarioDeChao.abrirOuFecharPortaDir(); }   // Abre ou fecha armário
-    if(tecla == 'p' || tecla == 'P'){ persiana.abrirOuFecharPersiana(); }   // Abre ou fecha persiana
-    if(tecla == 'j' || tecla == 'J'){ janela.abrirOuFecharJanela(); }   // Abre ou fecha janela
+    if(tecla == 'f' || tecla == 'F'){ Cena::armario.abrirOuFecharPorta(); }   // Abre ou fecha armário
+    if(tecla == 'e' || tecla == 'E'){ Cena::armarioDeChao.abrirOuFecharPortaEsq(); }   // Abre ou fecha armário
+    if(tecla == 'r' || tecla == 'R'){ Cena::armarioDeChao.abrirOuFecharPortaDir(); }   // Abre ou fecha armário
+    if(tecla == 'p' || tecla == 'P'){ Cena::persianaEsq.abrirOuFecharPersiana(); }   // Abre ou fecha persiana
+    if(tecla == 'a' || tecla == 'A'){ Cena::persianaDir.abrirOuFecharPersiana(); }   // Abre ou fecha persiana
+    if(tecla == 'j' || tecla == 'J'){ Cena::janelaEsq.abrirOuFecharJanela(); }   // Abre ou fecha janela
+    if(tecla == 'o' || tecla == 'O'){ Cena::porta.abrirOuFecharPorta(); }   // Abre ou fecha porta do laboratório
 }
 
 void moverTeclado(int tecla, int x, int y){
