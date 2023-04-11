@@ -2,6 +2,7 @@
 #define PRIMITIVAS_HPP
 #include <GL/glut.h>
 #include <vector>
+#include <cmath>
 
 // Desenha um retângulo, mas do mesmo modo de nossas outras primitivas
 void retangulo(float altura, float largura,
@@ -156,6 +157,54 @@ void trianguloFechado(float altura, float largura, float profundidade,
         glVertex3f(xInicial, yInicial,  zInicial);
         glVertex3f(xInicial, yInicial,  zInicial - profundidade);
     glEnd();
+}
+
+GLvoid circulo(const GLfloat raio,const GLuint vertices, const std::vector<float> cor)
+{
+    GLfloat vertex[4]; 
+    GLfloat texcoord[2];
+    
+    const GLfloat delta_angle = 2.0*M_PI/vertices;
+    
+    glBegin(GL_TRIANGLE_FAN);
+
+    glColor4f(cor[0], cor[1], cor[2], cor[3]);
+    
+    
+    texcoord[0] = 0.5;
+    texcoord[1] = 0.5;
+    glTexCoord2fv(texcoord);
+    
+    vertex[0] = vertex[1] = vertex[2] = 0.0;
+    vertex[3] = 1.0;        
+    glVertex4fv(vertex);
+    
+    for(int i = 0; i < vertices ; i++)
+    {
+        texcoord[0] = (std::cos(delta_angle*i) + 1.0)*0.5;
+        texcoord[1] = (std::sin(delta_angle*i) + 1.0)*0.5;
+        glTexCoord2fv(texcoord);
+        
+        vertex[0] = std::cos(delta_angle*i) * raio;
+        vertex[1] = std::sin(delta_angle*i) * raio;
+        vertex[2] = 0.0;
+        vertex[3] = 1.0;
+        glVertex4fv(vertex);
+    }
+    
+    texcoord[0] = (1.0 + 1.0)*0.5;
+    texcoord[1] = (0.0 + 1.0)*0.5;
+    glTexCoord2fv(texcoord);
+    
+    vertex[0] = 1.0 * raio;
+    vertex[1] = 0.0 * raio;
+    vertex[2] = 0.0;
+    vertex[3] = 1.0;
+    glVertex4fv(vertex);
+    glEnd();
+    
+    
+  
 }
 
 #endif

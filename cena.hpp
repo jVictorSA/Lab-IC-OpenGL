@@ -11,6 +11,7 @@
 #include "janela.hpp"
 #include "porta.hpp"
 #include "quadro.hpp"
+#include "mesa.hpp"
 
 namespace Cena{
         
@@ -176,7 +177,13 @@ namespace Cena{
                 Luz luz2(-1,2,-1.0);
                 luz1.desenhaLuz();
                 luz2.desenhaLuz();
-            
+             Mesa mesa(2,20,0, -1.5, -0.6);
+        Mesa mesa1(2,20,0, -1.5, -0.59);
+        Mesa mesa2(2,20,0, -1.5, -0.58);
+        Mesa mesa3(2,20,0, -1.5, -0.57);
+        Mesa mesa4(2,20,0, -1.5, -0.56);
+        Mesa mesa5(2,20,0, -1.5, -0.55);
+        
             // Desenha Janelas
             glPushMatrix();
                 glTranslatef(-1.5, 0, -6 -0.1);
@@ -204,6 +211,12 @@ namespace Cena{
                 glTranslatef(0.35, -2, 4-0.05);
                 porta.desenhar();
             glPopMatrix();
+        mesa.desenhaMesa();
+        mesa1.desenhaMesa();
+        mesa2.desenhaMesa();
+        mesa3.desenhaMesa();
+        mesa4.desenhaMesa();
+        mesa5.desenhaMesa();
 
             // Desenha o quadro
             glPushMatrix();
