@@ -9,6 +9,8 @@
 #include "armarios.hpp"
 #include "persiana.hpp"
 #include "janela.hpp"
+#include "porta.hpp"
+#include "quadro.hpp"
 
 namespace Cena{
         
@@ -23,7 +25,9 @@ namespace Cena{
         Janela janelaEsq(2,1.5,0.03, Aquamarine, Black);
         Janela janelaDir(2,1.5,0.03, Aquamarine, Black);
 
+        Porta porta(3,1.65,0.05, cinza, Yellow);
 
+        Quadro quadro(2.0, 2.0, 0.05, branco);
 
         void laboratorio(){
             
@@ -185,7 +189,19 @@ namespace Cena{
                 glPopMatrix();
 
             glPopMatrix();
-            
+
+            // Desenha porta
+            glPushMatrix();
+                glTranslatef(0.35, -2, 4-0.05);
+                porta.desenhar();
+            glPopMatrix();
+
+            // Desenha o quadro
+            glPushMatrix();
+                glTranslatef(-2, -1, 4-0.15);
+                quadro.desenhar();
+            glPopMatrix();
+        
         }
 //};
 
