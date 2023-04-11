@@ -15,9 +15,18 @@
 namespace Cena{
         
         
-        ArmarioSuspenso armario(2,4.5,2.7);
+        ArmarioSemPorta armarioSemPorta1(0.5,0.9,0.3);
+        ArmarioSemPorta armarioSemPorta2(0.5,0.9,0.3);
+
+        ArmarioSuspenso armarioSuspenso1(0.5,0.9,0.3);
+        ArmarioSuspenso armarioSuspenso2(0.5,0.9,0.3);
+        ArmarioSuspenso armarioSuspenso3(0.5,0.9,0.3);
+        ArmarioSuspenso armarioSuspenso4(0.5,0.9,0.3);
+        ArmarioSuspenso armarioSuspenso5(0.5,0.9,0.3);
+        ArmarioSuspenso armarioSuspenso6(0.5,0.9,0.3);
         
-        ArmarioDeChao armarioDeChao(2,3.75, 1);
+        ArmarioDeChao armarioDeChao1(1,1.5, 0.5);
+        ArmarioDeChao armarioDeChao2(2.5,1.5, 0.5);
 
         Persiana persianaEsq(2.5, 3, 0.2, 0.03, 0.5, 27, Black, cinza);
         Persiana persianaDir(2.5, 3, 0.2, 0.03, 0.5, 27, Black, cinza);
@@ -201,7 +210,67 @@ namespace Cena{
                 glTranslatef(-2, -1, 4-0.15);
                 quadro.desenhar();
             glPopMatrix();
-        
+
+
+            // Desenha armárioS suspensoS
+            glPushMatrix();
+                glPushMatrix();
+                    glRotatef(90, 0, 1, 0);
+                    glTranslatef(0, 0.5,-3.5 + 0.31);
+                    
+                    armarioSuspenso1.desenhar();
+                    //glPushMatrix();
+                    glTranslatef(-0.9, 0, 0);
+                    armarioSuspenso2.desenhar();
+                    glTranslatef(-0.9, 0, 0);
+                    armarioSemPorta1.desenhar();
+
+                    glTranslatef(0.9*3, 0, 0);
+                    armarioSuspenso3.desenhar();
+                    glTranslatef(0.9, 0, 0);
+                    armarioSuspenso4.desenhar();
+                    glTranslatef(0.9, 0, 0);
+                    armarioSuspenso5.desenhar();
+                    glTranslatef(0.9, 0, 0);
+                    armarioSemPorta2.desenhar();
+                glPopMatrix();
+
+                glPushMatrix();
+                    glRotatef(-90, 0, 1, 0);
+                    glTranslatef(-0.9*2, 0.5,-3.5 + 0.31);
+                    
+                    armarioSuspenso1.desenhar();
+                    
+                    glTranslatef(-0.9, 0, 0);
+                    armarioSuspenso2.desenhar();
+                    
+
+                    glTranslatef(0.9*2, 0, 0);
+                    armarioSuspenso3.desenhar();
+                                        
+                    glTranslatef(0.9, 0, 0);
+                    armarioSemPorta2.desenhar();
+                glPopMatrix();
+
+
+            glPopMatrix();
+
+            // Armários de chão
+            glPushMatrix();
+                glPushMatrix();
+                    glRotatef(90, 0, 1, 0);
+                    glTranslatef(0.9*4, -1.35,-3);
+                    armarioDeChao1.desenhar();
+                glPopMatrix();
+
+                glPushMatrix();
+                    glRotatef(-90, 0, 1, 0);
+                    glTranslatef(-0.9*5, -0.6,-3);
+                    armarioDeChao2.desenhar();
+                glPopMatrix();
+
+
+            glPopMatrix();
         }
 //};
 

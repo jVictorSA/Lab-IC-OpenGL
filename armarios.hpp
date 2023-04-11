@@ -6,6 +6,56 @@
 #include "cores.hpp"
 #include "matematica.hpp"
 
+class ArmarioSemPorta{
+    private:
+        float altura, largura, profundidade;
+        // Magnitude do movimento que deve ser incrementado ao angulo da porta
+        float movimentoAbertura = 0.5;
+        // Valor do angulo que a porta deve se mexer
+        float anguloPorta = 1;
+
+    public:
+        ArmarioSemPorta(float alt, float larg, float prof){
+            altura = alt;
+            largura = larg;
+            profundidade = prof;
+        }
+
+        ~ArmarioSemPorta(){}
+
+        void desenhar(){
+            glPushMatrix();
+                // Centralização
+                glTranslatef(-largura/2, -altura/2, -profundidade/2);
+                glPushMatrix();
+                    // Fundo
+                    glPushMatrix();
+                    glTranslatef(0, 0, -profundidade/2);
+                        paralelepipedoFechado(altura, largura, 0.01 ,0,0,0,vermelho);
+                    glPopMatrix();
+
+                    // Laterais
+                    glPushMatrix();
+                        glRotatef(90,0,1,0);
+                        glTranslatef(-profundidade/2,0,0);
+                        paralelepipedoFechado(altura, profundidade, 0.01,0,0,0,branco);
+                        glTranslatef(0,0,largura);
+                        paralelepipedoFechado(altura, profundidade, 0.01,0,0,0,verde);
+                    glPopMatrix();
+
+                    // Parte de baixo e de cima
+                    glPushMatrix();
+                        glRotatef(90,1,0,0);
+                        glTranslatef(0, -profundidade/2, 0);
+                        paralelepipedoFechado(profundidade, largura, 0.01,0,0,0,azul);
+                        glTranslatef(0,0,-altura);
+                        paralelepipedoFechado(profundidade, largura, 0.01,0,0,0,azul);
+                    glPopMatrix();
+                glPopMatrix();
+            glPopMatrix();
+        }
+};
+
 // Armário que fica suspenso nas paredes do laboratório
 class ArmarioSuspenso{
     private:
@@ -25,45 +75,47 @@ class ArmarioSuspenso{
         ~ArmarioSuspenso(){}
 
         void desenhar(){
-            // Centralização
-            glTranslatef(-largura/2, -altura/2, -profundidade/2);
             glPushMatrix();
-                // Fundo
+                // Centralização
+                glTranslatef(-largura/2, -altura/2, -profundidade/2);
                 glPushMatrix();
-                glTranslatef(0, 0, -profundidade/2);
-                    paralelepipedoFechado(altura, largura, 0.01 ,0,0,0,vermelho);
-                glPopMatrix();
+                    // Fundo
+                    glPushMatrix();
+                    glTranslatef(0, 0, -profundidade/2);
+                        paralelepipedoFechado(altura, largura, 0.01 ,0,0,0,vermelho);
+                    glPopMatrix();
 
-                // Laterais
-                glPushMatrix();
-                    glRotatef(90,0,1,0);
-                    glTranslatef(-profundidade/2,0,0);
-                    paralelepipedoFechado(altura, profundidade, 0.01,0,0,0,branco);
-                    glTranslatef(0,0,largura);
-                    paralelepipedoFechado(altura, profundidade, 0.01,0,0,0,verde);
-                glPopMatrix();
+                    // Laterais
+                    glPushMatrix();
+                        glRotatef(90,0,1,0);
+                        glTranslatef(-profundidade/2,0,0);
+                        paralelepipedoFechado(altura, profundidade, 0.01,0,0,0,branco);
+                        glTranslatef(0,0,largura);
+                        paralelepipedoFechado(altura, profundidade, 0.01,0,0,0,verde);
+                    glPopMatrix();
 
-                // Parte de baixo e de cima
-                glPushMatrix();
-                    glRotatef(90,1,0,0);
-                    glTranslatef(0, -profundidade/2, 0);
-                    paralelepipedoFechado(profundidade, largura, 0.01,0,0,0,azul);
-                    glTranslatef(0,0,-altura);
-                    paralelepipedoFechado(profundidade, largura, 0.01,0,0,0,azul);
-                glPopMatrix();
-                
-                // Porta
-                glPushMatrix();
-                    glTranslatef(0,altura, profundidade/2);
-                    glRotatef(180, 1,0,0);
-                    anguloPorta += movimentoAbertura;
-
-                    anguloPorta = clamp<float>(anguloPorta, -90.0, 0.0);
+                    // Parte de baixo e de cima
+                    glPushMatrix();
+                        glRotatef(90,1,0,0);
+                        glTranslatef(0, -profundidade/2, 0);
+                        paralelepipedoFechado(profundidade, largura, 0.01,0,0,0,azul);
+                        glTranslatef(0,0,-altura);
+                        paralelepipedoFechado(profundidade, largura, 0.01,0,0,0,azul);
+                    glPopMatrix();
                     
-                    glRotatef(anguloPorta, 1,0,0);
-                    paralelepipedoFechado(altura, largura, 0.01,0,0,0,rosa);
-                    glTranslatef(0.60,0.8,-0.01);
-                    paralelepipedoFechado(altura/10, largura * 0.25, 0.07,0,0,0,branco);
+                    // Porta
+                    glPushMatrix();
+                        glTranslatef(0,altura, profundidade/2);
+                        glRotatef(180, 1,0,0);
+                        anguloPorta += movimentoAbertura;
+
+                        anguloPorta = clamp<float>(anguloPorta, -90.0, 0.0);
+                        
+                        glRotatef(anguloPorta, 1,0,0);
+                        paralelepipedoFechado(altura, largura, 0.01,0,0,0,rosa);
+                        glTranslatef(largura/2 - (largura * 0.25)/2, altura - altura/5, -profundidade/40);
+                        paralelepipedoFechado(altura/10, largura * 0.25, profundidade/20,0,0,0,branco);
+                    glPopMatrix();
                 glPopMatrix();
             glPopMatrix();
         };
@@ -101,8 +153,9 @@ class ArmarioDeChao{
         ~ArmarioDeChao(){}
 
         void desenhar(){
-            glTranslatef(-largura/2, -altura/2, -profundidade/2);
             glPushMatrix();
+                //Centraliza
+                glTranslatef(-largura/2, -altura/2, -profundidade/2);
 
                 // Fundo
                 glPushMatrix();
