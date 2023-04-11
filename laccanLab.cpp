@@ -11,11 +11,14 @@
 
 const int BARRA_DE_ESPAÇO = 32;
 
+// Indica se a tecla ALT fora pressionada (funciona como um CAPS LOCK)
+bool altLigado = false;
+
 float angulo = 0.0;
 float angulo2 = 0.0;
-float lx, ly = 0.0f, lz = -1.0f;
-float xOlho = 0.0f, zOlho = 10.0f;
-float yOlho = 0;
+float lx = 0.0f, ly = 0.0f, lz = -1.0f;
+float xOlho = 5.0f, zOlho = 40.0f;
+float yOlho = 10.0f;
 float velocity = 1.0f;
 float delta = 0.1f;
 
@@ -46,19 +49,6 @@ void render(){
 
     // // Cena principal
     Cena::laboratorio();
-
-    // // Descomente para testar o armário suspenso
-    // armario.desenhar();
-
-    // // Descomente para testar o armário de chão
-    // armarioDeChao.desenhar();
-
-
-    // // Descomente para testar a persiana
-    //persiana.desenhar();
-
-    // Descomente para testar a janela
-    //janela.desenhar();
 
     glutSwapBuffers();
 }
@@ -92,20 +82,47 @@ void mudaTamJanela(int largura, int altura){
     glMatrixMode(GL_MODELVIEW);
 }
 
+void abrirOuFecharPersiana(Persiana& persianaEsq, Persiana& persianaDir){
+    if (altLigado == false){
+        persianaEsq.abrirOuFecharPersiana();
+    
+    }else{
+        persianaDir.abrirOuFecharPersiana();
+    }
+}
+
+void abrirOuFecharJanela(Janela& janelaEsq, Janela& janelaDir){
+    if (altLigado == false){
+        janelaEsq.abrirOuFecharJanela();
+    
+    }else{
+        janelaDir.abrirOuFecharJanela();
+    }
+}
+
+void abrirOuFecharPortaDeArmarioDeChao(ArmarioDeChao& armario){
+    if (altLigado == false){
+        armario.abrirOuFecharPortaEsq();
+    
+    }else{
+        armario.abrirOuFecharPortaDir();
+    }
+}
+
 // x e y são paramêtros necessárias caso queiramos
 // usar a coordenada do mouse no momento da chamada desta callback
 void teclasEspeciais(unsigned char tecla, int x, int y){
-    if(tecla == 'c' || tecla == 'C'){ olharProCentro(); } // Aponta a câmera para a origem da cena
-    if(tecla == 'q' || tecla == 'Q'){ exit(0); }
-    if(tecla == BARRA_DE_ESPAÇO)    { yOlho += 0.07; }   // Sobe a câmera
-    if(tecla == 'z' || tecla == 'Z'){ yOlho -= 0.07; }   // Desce a câmera
-    if(tecla == 'f' || tecla == 'F'){ Cena::armarioSuspenso1.abrirOuFecharPorta(); }    // Abre ou fecha armário
-    if(tecla == 'e' || tecla == 'E'){ Cena::armarioDeChao1.abrirOuFecharPortaEsq(); }    // Abre ou fecha armário
-    if(tecla == 'r' || tecla == 'R'){ Cena::armarioDeChao1.abrirOuFecharPortaDir(); }    // Abre ou fecha armário
-    if(tecla == 'p' || tecla == 'P'){ Cena::persianaEsq.abrirOuFecharPersiana();   }    // Abre ou fecha persiana
-    if(tecla == 'a' || tecla == 'A'){ Cena::persianaDir.abrirOuFecharPersiana();   }    // Abre ou fecha persiana
-    if(tecla == 'j' || tecla == 'J'){ Cena::janelaEsq.abrirOuFecharJanela();       }    // Abre ou fecha janela
-    if(tecla == 'o' || tecla == 'O'){ Cena::porta.abrirOuFecharPorta();            }    // Abre ou fecha porta do laboratório
+    if(tecla == 'c' || tecla == 'C'){ olharProCentro(); }    // Aponta a câmera para a origem da cena
+    if(tecla == 'q' || tecla == 'Q'){ exit(0); }            // Fecha o programa
+    if(tecla == BARRA_DE_ESPAÇO)    { yOlho += 0.07; }      // Sobe a câmera
+    if(tecla == 'z' || tecla == 'Z'){ yOlho -= 0.07; }      // Desce a câmera
+    if(tecla == 'e' || tecla == 'E'){ abrirOuFecharPortaDeArmarioDeChao(Cena::armarioDeChao1); }    // Abre ou fecha armário de chão da esquerda
+    if(tecla == 'r' || tecla == 'R'){ abrirOuFecharPortaDeArmarioDeChao(Cena::armarioDeChao2); }    // Abre ou fecha armário de chão da direita
+    if(tecla == 'p' || tecla == 'P'){ abrirOuFecharPersiana(Cena::persianaEsq,                      // Abre ou fecha persiana
+                                                            Cena::persianaDir); }    
+    if(tecla == 'j' || tecla == 'J'){ abrirOuFecharJanela(Cena::janelaEsq,                          // Abre ou fecha janela
+                                                          Cena::janelaDir); }    
+    if(tecla == 'o' || tecla == 'O'){ Cena::porta.abrirOuFecharPorta(); }                           // Abre ou fecha porta do laboratório
 }
 
 void moverTeclado(int tecla, int x, int y){
@@ -121,6 +138,16 @@ void moverTeclado(int tecla, int x, int y){
     //Adiciona boost na movimentação da câmera quando o shift é pressionado ou CAPS LOCK é ativado
     if(teclaEspecial == GLUT_ACTIVE_SHIFT){
         deltaPosicao = 0.5;
+    }
+
+    if (teclaEspecial == GLUT_ACTIVE_ALT){
+            if(altLigado == true){
+                std::cout << "ALT DESLIGADO!\n";
+                altLigado = false;
+            }else{
+                std::cout << "ALT LIGADO!\n";
+                altLigado = true;
+            }
     }
 
     switch(tecla){
@@ -164,6 +191,32 @@ void moverTeclado(int tecla, int x, int y){
             xOlho -= (lx/norma) * deltaPosicao;
             yOlho -= (ly/norma) * deltaPosicao;
             zOlho -= (lz/norma) * deltaPosicao;
+            break;
+        
+        // Abrir ou fechar armários suspensos
+        case GLUT_KEY_F1:
+            Cena::armarioSuspenso2.abrirOuFecharPorta();
+            break;
+        case GLUT_KEY_F2:
+            Cena::armarioSuspenso1.abrirOuFecharPorta();
+            break;
+        case GLUT_KEY_F3:
+            Cena::armarioSuspenso3.abrirOuFecharPorta();
+            break;
+        case GLUT_KEY_F4:
+            Cena::armarioSuspenso4.abrirOuFecharPorta();
+            break;
+        case GLUT_KEY_F5:
+            Cena::armarioSuspenso5.abrirOuFecharPorta();
+            break;
+        case GLUT_KEY_F6:
+            Cena::armarioSuspenso7.abrirOuFecharPorta();
+            break;
+        case GLUT_KEY_F7:
+            Cena::armarioSuspenso6.abrirOuFecharPorta();
+            break;
+        case GLUT_KEY_F8:
+            Cena::armarioSuspenso8.abrirOuFecharPorta();
             break;
     }
 }

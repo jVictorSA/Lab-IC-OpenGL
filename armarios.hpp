@@ -14,11 +14,15 @@ class ArmarioSemPorta{
         // Valor do angulo que a porta deve se mexer
         float anguloPorta = 1;
 
+        std::vector<float> cor1, cor2;
+
     public:
-        ArmarioSemPorta(float alt, float larg, float prof){
+        ArmarioSemPorta(float alt, float larg, float prof, std::vector<float> corA1, std::vector<float> corA2){
             altura = alt;
             largura = larg;
             profundidade = prof;
+            cor1 = corA1;
+            cor2 = corA2;
         }
 
         ~ArmarioSemPorta(){}
@@ -31,25 +35,25 @@ class ArmarioSemPorta{
                     // Fundo
                     glPushMatrix();
                     glTranslatef(0, 0, -profundidade/2);
-                        paralelepipedoFechado(altura, largura, 0.01 ,0,0,0,vermelho);
+                        paralelepipedoFechado(altura, largura, 0.01 ,0,0,0, cor2);
                     glPopMatrix();
 
                     // Laterais
                     glPushMatrix();
                         glRotatef(90,0,1,0);
                         glTranslatef(-profundidade/2,0,0);
-                        paralelepipedoFechado(altura, profundidade, 0.01,0,0,0,branco);
+                        paralelepipedoFechado(altura, profundidade, 0.01,0,0,0,cor1);
                         glTranslatef(0,0,largura);
-                        paralelepipedoFechado(altura, profundidade, 0.01,0,0,0,verde);
+                        paralelepipedoFechado(altura, profundidade, 0.01,0,0,0,cor1);
                     glPopMatrix();
 
                     // Parte de baixo e de cima
                     glPushMatrix();
                         glRotatef(90,1,0,0);
                         glTranslatef(0, -profundidade/2, 0);
-                        paralelepipedoFechado(profundidade, largura, 0.01,0,0,0,azul);
+                        paralelepipedoFechado(profundidade, largura, 0.01,0,0,0,cor1);
                         glTranslatef(0,0,-altura);
-                        paralelepipedoFechado(profundidade, largura, 0.01,0,0,0,azul);
+                        paralelepipedoFechado(profundidade, largura, 0.01,0,0,0,cor1);
                     glPopMatrix();
                 glPopMatrix();
             glPopMatrix();
@@ -64,12 +68,17 @@ class ArmarioSuspenso{
         float movimentoAbertura = 0.5;
         // Valor do angulo que a porta deve se mexer
         float anguloPorta = 1;
+        
+        std::vector<float> cor1, cor2, cor3;
 
     public:
-        ArmarioSuspenso(float alt, float larg, float prof){
+        ArmarioSuspenso(float alt, float larg, float prof, std::vector<float> corA1, std::vector<float> corA2, std::vector<float> corA3){
             altura = alt;
             largura = larg;
             profundidade = prof;
+            cor1 = corA1;
+            cor2 = corA2;
+            cor3 = corA3;
         }
 
         ~ArmarioSuspenso(){}
@@ -82,25 +91,25 @@ class ArmarioSuspenso{
                     // Fundo
                     glPushMatrix();
                     glTranslatef(0, 0, -profundidade/2);
-                        paralelepipedoFechado(altura, largura, 0.01 ,0,0,0,vermelho);
+                        paralelepipedoFechado(altura, largura, 0.01 ,0,0,0,cor2);
                     glPopMatrix();
 
                     // Laterais
                     glPushMatrix();
                         glRotatef(90,0,1,0);
                         glTranslatef(-profundidade/2,0,0);
-                        paralelepipedoFechado(altura, profundidade, 0.01,0,0,0,branco);
+                        paralelepipedoFechado(altura, profundidade, 0.01,0,0,0,cor1);
                         glTranslatef(0,0,largura);
-                        paralelepipedoFechado(altura, profundidade, 0.01,0,0,0,verde);
+                        paralelepipedoFechado(altura, profundidade, 0.01,0,0,0,cor1);
                     glPopMatrix();
 
                     // Parte de baixo e de cima
                     glPushMatrix();
                         glRotatef(90,1,0,0);
                         glTranslatef(0, -profundidade/2, 0);
-                        paralelepipedoFechado(profundidade, largura, 0.01,0,0,0,azul);
+                        paralelepipedoFechado(profundidade, largura, 0.01,0,0,0,cor1);
                         glTranslatef(0,0,-altura);
-                        paralelepipedoFechado(profundidade, largura, 0.01,0,0,0,azul);
+                        paralelepipedoFechado(profundidade, largura, 0.01,0,0,0,cor1);
                     glPopMatrix();
                     
                     // Porta
@@ -112,9 +121,9 @@ class ArmarioSuspenso{
                         anguloPorta = clamp<float>(anguloPorta, -90.0, 0.0);
                         
                         glRotatef(anguloPorta, 1,0,0);
-                        paralelepipedoFechado(altura, largura, 0.01,0,0,0,rosa);
+                        paralelepipedoFechado(altura, largura, 0.01,0,0,0,cor3);
                         glTranslatef(largura/2 - (largura * 0.25)/2, altura - altura/5, -profundidade/40);
-                        paralelepipedoFechado(altura/10, largura * 0.25, profundidade/20,0,0,0,branco);
+                        paralelepipedoFechado(altura/10, largura * 0.25, profundidade/20,0,0,0,cor2);
                     glPopMatrix();
                 glPopMatrix();
             glPopMatrix();
@@ -143,11 +152,16 @@ class ArmarioDeChao{
         // Valor do angulo que a porta direita deve se mexer
         float anguloPortaDir = 1;
 
+        std::vector<float> cor1, cor2, cor3;
+
     public:
-        ArmarioDeChao(float alt, float larg, float prof){
+        ArmarioDeChao(float alt, float larg, float prof, std::vector<float> corA1, std::vector<float> corA2, std::vector<float> corA3){
             altura = alt;
             largura = larg;
             profundidade = prof;
+            cor1 = corA1;
+            cor2 = corA2;
+            cor3 = corA3;
         }
 
         ~ArmarioDeChao(){}
@@ -160,25 +174,25 @@ class ArmarioDeChao{
                 // Fundo
                 glPushMatrix();
                     glTranslatef(0,0,-profundidade/2);
-                    paralelepipedoFechado(altura, largura, 0.01 ,0,0,0,vermelho);
+                    paralelepipedoFechado(altura, largura, 0.01 ,0,0,0,cor2);
                 glPopMatrix();
 
                 // Laterais
                 glPushMatrix();
                     glRotatef(90,0,1,0);
                     glTranslatef(-profundidade/2,0,0);
-                    paralelepipedoFechado(altura, profundidade, 0.01,0,0,0,branco);
+                    paralelepipedoFechado(altura, profundidade, 0.01,0,0,0,cor1);
                     glTranslatef(0,0,largura);
-                    paralelepipedoFechado(altura, profundidade, 0.01,0,0,0,branco);
+                    paralelepipedoFechado(altura, profundidade, 0.01,0,0,0,cor1);
                 glPopMatrix();
 
                 // Parte de baixo e de cima
                 glPushMatrix();
                     glRotatef(90,1,0,0);
                     glTranslatef(0,-profundidade/2,0);
-                    paralelepipedoFechado(profundidade, largura, 0.01,0,0,0,azul);
+                    paralelepipedoFechado(profundidade, largura, 0.01,0,0,0,cor1);
                     glTranslatef(0,0,-altura);
-                    paralelepipedoFechado(profundidade, largura, 0.01,0,0,0,azul);
+                    paralelepipedoFechado(profundidade, largura, 0.01,0,0,0,cor1);
                 glPopMatrix();
                 
                 // Portas
@@ -190,9 +204,9 @@ class ArmarioDeChao{
                         anguloPortaEsq = clamp<float>(anguloPortaEsq, -90.0, 0.0);
                         
                         glRotatef(anguloPortaEsq, 0,1,0);
-                        paralelepipedoFechado(altura, largura/2, 0.01,0,0,0,verde);
+                        paralelepipedoFechado(altura, largura/2, 0.01,0,0,0,cor1);
                         glTranslatef(largura/2 - largura/2 * 0.15, altura*0.55, (largura * 0.003 + altura * 0.006 + profundidade * 0.008) * 1.2);
-                        paralelepipedoFechado(altura/5, largura * 0.03, (largura*altura*profundidade)*0.003,0,0,0,azul);
+                        paralelepipedoFechado(altura/5, largura * 0.03, (largura*altura*profundidade)*0.003,0,0,0,cor3);
                     glPopMatrix();
 
                     glPushMatrix();
@@ -203,9 +217,9 @@ class ArmarioDeChao{
                         glTranslatef(largura/2, 0,0);
                         glRotatef(anguloPortaDir, 0,1,0);
                         glTranslatef(-largura/2, 0,0);
-                        paralelepipedoFechado(altura, largura/2, 0.01,0,0,0,branco);
+                        paralelepipedoFechado(altura, largura/2, 0.01,0,0,0,cor1);
                         glTranslatef((largura/2) * 0.1, altura*0.55, (largura * 0.003 + altura * 0.006 + profundidade * 0.008) * 1.2);
-                        paralelepipedoFechado(altura/5, largura * 0.03, (largura*altura*profundidade)*0.003,0,0,0,azul);
+                        paralelepipedoFechado(altura/5, largura * 0.03, (largura*altura*profundidade)*0.003,0,0,0,cor3);
                     glPopMatrix();
 
                 glPopMatrix();
