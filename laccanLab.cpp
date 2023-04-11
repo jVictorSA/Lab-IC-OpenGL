@@ -6,12 +6,15 @@
 #include "cena.hpp"
 #include "armarios.hpp"
 #include "persiana.hpp"
+#include "janela.hpp"
 
 ArmarioSuspenso armario(2,4.5,2.7);
 
 ArmarioDeChao armarioDeChao(2,3.75, 1);
 
 Persiana persiana(3, 3, 0.5, 0.03, 0.5);
+
+Janela janela(3,3,0.3, Aquamarine, Black);
 
 const int BARRA_DE_ESPAÇO = 32;
 
@@ -48,7 +51,7 @@ void render(){
 			0.0f, 1.0f,  0.0f);
 
     // // Cena principal
-    laboratorio();
+    //laboratorio();
 
     // // Descomente para testar o armário suspenso
     // armario.desenhar();
@@ -60,29 +63,15 @@ void render(){
     // // Descomente para testar a persiana
     //persiana.desenhar();
 
+    // Descomente para testar a janela
+    janela.desenhar();
+
     glutSwapBuffers();
 }
 
 void inicializar(){
-    // Adicionar iluminação, depois vemo isso aí
-    // glEnable(GL_LIGHTING);
-    // glEnable(GL_LIGHT1);
-
     // Habilita o teste de profundidade para evitar sobrepor objetos
     glEnable(GL_DEPTH_TEST);
-
-    // Bright white light – full intensity RGB values
-    // GLfloat ambientLight[] = { 0.5f, 0.5f, 0.5f, 1.0f };
-    // // Enable lighting
-    // glEnable(GL_LIGHTING);
-
-    // // Set light model to use ambient light specified by ambientLight[]
-    // glLightModelfv(GL_LIGHT_MODEL_AMBIENT,ambientLight);
-
-    // // Enable color tracking
-    // glEnable(GL_COLOR_MATERIAL);
-    // // Front material ambient and diffuse colors track glColor
-    // glColorMaterial(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE);
 
     glClearColor(0.2, 0.3, 0.4, 0.0);
 }
@@ -119,6 +108,7 @@ void teclasEspeciais(unsigned char tecla, int x, int y){
     if(tecla == 'e' || tecla == 'E'){ armarioDeChao.abrirOuFecharPortaEsq(); }   // Abre ou fecha armário
     if(tecla == 'r' || tecla == 'R'){ armarioDeChao.abrirOuFecharPortaDir(); }   // Abre ou fecha armário
     if(tecla == 'p' || tecla == 'P'){ persiana.abrirOuFecharPersiana(); }   // Abre ou fecha persiana
+    if(tecla == 'j' || tecla == 'J'){ janela.abrirOuFecharJanela(); }   // Abre ou fecha janela
 }
 
 void moverTeclado(int tecla, int x, int y){
