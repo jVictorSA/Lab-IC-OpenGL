@@ -12,7 +12,7 @@
 #include "porta.hpp"
 #include "quadro.hpp"
 #include "mesa.hpp"
-
+#include "solua.hpp"
 namespace Cena{
         
         
@@ -40,6 +40,11 @@ namespace Cena{
         Porta porta(3,1.65,0.05, cinza, Yellow);
 
         Quadro quadro(2.0, 2.0, 0.05, branco);
+
+        Luz luz1(1,2,-1.0, cinza);
+        Luz luz2(-1,2,-1.0, cinza);
+
+        Solua solua(1,50,-100);
 
         void laboratorio(){
             
@@ -175,8 +180,7 @@ namespace Cena{
                 Ventilador ventilador2(-1,1.2,1.4, LightSteelBlue, MediumSeaGreen);
                 ventilador1.desenhaVentilador();
                 ventilador2.desenhaVentilador();
-                Luz luz1(1,2,-1.0, LightSteelBlue);
-                Luz luz2(-1,2,-1.0, LightSteelBlue);
+                
                 luz1.desenhaLuz();
                 luz2.desenhaLuz();
              Mesa mesa(2,20,0, -1.5, -0.6);
@@ -185,6 +189,8 @@ namespace Cena{
         Mesa mesa3(2,20,0, -1.5, -0.57);
         Mesa mesa4(2,20,0, -1.5, -0.56);
         Mesa mesa5(2,20,0, -1.5, -0.55);
+        
+        solua.desenhar();
         
             // Desenha Janelas
             glPushMatrix();
@@ -283,7 +289,7 @@ namespace Cena{
                     glTranslatef(-0.9*5, -0.6,-3+0.1);
                     armarioDeChao2.desenhar();
                 glPopMatrix();
-
+                
 
             glPopMatrix();
         }

@@ -23,11 +23,13 @@ class ArmarioSemPorta{
             profundidade = prof;
             cor1 = corA1;
             cor2 = corA2;
+            
         }
 
         ~ArmarioSemPorta(){}
 
         void desenhar(){
+            
             glPushMatrix();
                 // Centralização
                 glTranslatef(-largura/2, -altura/2, -profundidade/2);

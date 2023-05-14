@@ -47,7 +47,7 @@ void render(){
 			xOlho+lx, yOlho+ly,  zOlho+lz,
 			0.0f, 1.0f,  0.0f);
 
-    // // Cena principal
+   
     Cena::laboratorio();
 
     glutSwapBuffers();
@@ -123,6 +123,10 @@ void teclasEspeciais(unsigned char tecla, int x, int y){
     if(tecla == 'j' || tecla == 'J'){ abrirOuFecharJanela(Cena::janelaEsq,                          // Abre ou fecha janela
                                                           Cena::janelaDir); }    
     if(tecla == 'o' || tecla == 'O'){ Cena::porta.abrirOuFecharPorta(); }                           // Abre ou fecha porta do laboratório
+    if(tecla == 'b'){
+        Cena::luz1.ligaDesliga();
+        Cena::luz2.ligaDesliga();
+    }
 }
 
 void moverTeclado(int tecla, int x, int y){
@@ -240,7 +244,7 @@ void mouseButton(int button, int state, int x, int y) {
 
 void mouseMove(int x, int y) {
 
-	// this will only be true when the left button is down
+	
 	if (xOrigin >= 0) {
 		
 		deltaAngle = (x - xOrigin) * 0.005f;

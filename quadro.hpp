@@ -15,11 +15,13 @@ class Quadro{
             largura = larg;
             profundidade = prof;
             cor = corQ;
+            
         }
 
         ~Quadro(){}
 
         void desenhar(){
+            
             glPushMatrix();
                 paralelepipedoFechado(altura, largura, profundidade, 0, 0, 0, Aquamarine);
             glPopMatrix();

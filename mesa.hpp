@@ -11,8 +11,10 @@ class Mesa{
         Mesa(float r, int v, float xCord, float yCord, float zCord){ raio = r, vertices = v, x = xCord, y = yCord, z = zCord;}
 
         void desenhaMesa(){
+            
 
         glPushMatrix();
+            
             
             glRotatef(-90,0,1,0);
             glRotatef(-90,1,0,0);
