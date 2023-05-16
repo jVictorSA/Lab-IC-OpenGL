@@ -22,23 +22,38 @@ class Solua{
             GLfloat luzAmbiente[4] = {0.1, 0.1, 0.1, 1.0};
             GLfloat luzDifusa[4] = {0.7, 0.7, 0.7, 1.0};    // "cor"
             GLfloat luzEspecular[4] = {1.0, 1.0, 1.0, 1.0}; // "brilho"
-            GLfloat posicaoLuz[4] = {0,50,150, 1};
+            GLfloat posicaoLuz[4] = {this->x, this->y, this->z + 50, 1};
 
+
+            GLfloat materialAmbient[] = {0.25f, 0.25f, 0.25f, 1.0f};
+            GLfloat materialDiffuse[] = {1.0f, 1.0f, 1.0f, 1.0f};
+            GLfloat materialSpecular[] = {0.0f, 0.0f, 0.0f, 1.0f};
+            GLfloat materialShininess[] = {0.0f};
+            glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, materialAmbient);
+            glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, materialDiffuse);
+            glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, materialSpecular);
+            glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, materialShininess);
+
+
+            
             
 
             // Capacidade de brilho do material
-            GLfloat especularidade[4] = {1.0, 1.0, 1.0, 1.0};
-            GLint especMaterial = 60;
+            // GLfloat especularidade[4] = {1.0, 1.0, 1.0, 1.0};
+            // GLint especMaterial = 60;
 
-            
+            glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, GL_TRUE);
+
+            // glEnable(GL_CULL_FACE);
+            // glCullFace(GL_BACK);
 
             // Habilita o modelo de colorização de Gouraud
             glShadeModel(GL_SMOOTH);
 
             // Define a refletância do material
-            glMaterialfv(GL_FRONT, GL_SPECULAR, especularidade);
-            // Define a concentração do brilho
-            glMateriali(GL_FRONT, GL_SHININESS, especMaterial);
+            // glMaterialfv(GL_FRONT, GL_SPECULAR, especularidade);
+            // // Define a concentração do brilho
+            // glMateriali(GL_FRONT, GL_SHININESS, especMaterial);
             
 
 

@@ -39,6 +39,7 @@ void olharProCentro(){
 // Renderiza a cena
 void render(){
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    
 
     glLoadIdentity();
 
@@ -54,7 +55,7 @@ void render(){
             GLfloat luzDifusa[4] = {0.7, 0.7, 0.7, 1.0};    // "cor"
             GLfloat luzEspecular[4] = {1.0, 1.0, 1.0, 1.0}; // "brilho"
             GLfloat posicaoLuz[4] = {1-0.7,2.2,-1-0.05, 1};
-
+            GLfloat posicaoLuz1[4] = {-1-0.7,2.2,-1-0.05, 1};
             // Capacidade de brilho do material
             GLfloat especularidade[4] = {1.0, 1.0, 1.0, 1.0};
             GLint especMaterial = 60;
@@ -81,9 +82,16 @@ void render(){
             glLightfv(GL_LIGHT1, GL_SPECULAR, luzEspecular);
             
 
-            glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 80.0);
+            glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 90.0);
             GLfloat spot_direction[] = { 0.0, -1.0, 0.0 };
             glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, spot_direction);
+
+
+            glLightf(GL_LIGHT2, GL_SPOT_CUTOFF, 90.0);
+            glLightfv(GL_LIGHT2, GL_POSITION, posicaoLuz);
+            glLightfv(GL_LIGHT2, GL_DIFFUSE, luzDifusa);
+            glLightfv(GL_LIGHT2, GL_SPECULAR, luzEspecular);
+            glLightfv(GL_LIGHT2, GL_SPOT_DIRECTION, spot_direction);
 
             // Habilita a definição da cor do material a partir da cor corrente
             glEnable(GL_COLOR_MATERIAL);
@@ -95,6 +103,9 @@ void render(){
             glEnable(GL_DEPTH_TEST);
             glLightf(GL_LIGHT1, GL_CONSTANT_ATTENUATION, 2.0);
             glLightf(GL_LIGHT1, GL_SPOT_EXPONENT, 2.0);
+
+            glLightf(GL_LIGHT2, GL_CONSTANT_ATTENUATION, 2.0);
+            glLightf(GL_LIGHT2, GL_SPOT_EXPONENT, 2.0);
 
    
     Cena::laboratorio();

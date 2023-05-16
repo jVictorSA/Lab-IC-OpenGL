@@ -44,16 +44,19 @@ namespace Cena{
         Luz luz1(1,2,-1.0, cinza);
         Luz luz2(-1,2,-1.0, cinza);
 
-        Solua solua(1,50,-100);
+        Solua solua(1,50,-200);
 
         void laboratorio(){
             
             // //Paredes e piso
+            
             glPushMatrix();
+                glNormal3f(0,0,1);
                 glTranslatef(-3.5 - 0.15,-2,-6);
                 paralelepipedoFechado(1,7.3,0.15,0,0,0,Quartz);
                 
                 glPushMatrix();
+                    
                     glTranslatef(0,1,0);
                     paralelepipedoFechado(2,1.4,0.15,0,0,0,Quartz);
                     glTranslatef(2.9,0,0);
@@ -66,7 +69,15 @@ namespace Cena{
                 paralelepipedoFechado(1,7.3,0.15,0,0,0,Quartz);
             glPopMatrix();
 
+            // Piso do lab
             glPushMatrix();
+                GLfloat especularidade[4] = {0.1, 0.1, 0.1, 1.0};
+                GLint especMaterial = 10;
+                // Define a refletância do material
+                glMaterialfv(GL_FRONT, GL_SPECULAR, especularidade);
+                // Define a concentração do brilho
+            glMateriali(GL_FRONT, GL_SHININESS, especMaterial);
+                glNormal3f(0,1,0);
                 glTranslatef(-3.5,-2,4);
                 paralelepipedoFechado(0.15,7,10, 0,0,0,Khaki);
             glPopMatrix();
@@ -83,7 +94,10 @@ namespace Cena{
             
             //Parede da frente
             glPushMatrix();
+                
                 glTranslatef(-3.5 - 0.15,-2,4);
+                
+                glNormal3f(0,0,1);
                 paralelepipedoFechado(4,4,0.15,0,0,0,Quartz);
             glPopMatrix();
 
@@ -99,11 +113,13 @@ namespace Cena{
 
             // Desenha Teto
             glPushMatrix();
+                
                 teto(2,7,10,0,0,0, Firebrick, Quartz);
             glPopMatrix();
 
             // Desenha piso e teto do corredor
             glPushMatrix();
+                
                 glTranslatef(-16,-2,7);
                 
                 glPushMatrix();

@@ -36,6 +36,7 @@ class Porta{
 
         void desenhar(){
             glPushMatrix();
+                glNormal3f(0,0,1);
                 // Centralização
                 glTranslatef(0, 0, profundidade/2);
                 glPushMatrix();

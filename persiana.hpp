@@ -34,6 +34,7 @@ class Persiana{
 
         void desenhar(){
             glPushMatrix();
+                glNormal3f(0,0,1);
                 // Centralização
                 glTranslatef(-largura/2, altura/2, profundidade/2);
                 

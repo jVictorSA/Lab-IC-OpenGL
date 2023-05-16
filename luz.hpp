@@ -42,13 +42,15 @@ public:
             this->desligado = false;
             this->corLuz = branco;
 
-            GLfloat luzAmbiente[4] = {0.8, 0.8, 0.8, 1.0};
+            GLfloat luzAmbiente[4] = {0.4, 0.4, 0.4, 1.0};
+            
             // glLightModelfv(GL_LIGHT_MODEL_AMBIENT, luzAmbiente);
             glLightfv(GL_LIGHT1, GL_AMBIENT, luzAmbiente);
-
+            glLightfv(GL_LIGHT2, GL_AMBIENT, luzAmbiente);
             
             
             glEnable(GL_LIGHT1);
+            glEnable(GL_LIGHT2);
             
             
 
@@ -57,6 +59,7 @@ public:
         else
         {
             glDisable(GL_LIGHT1);
+            glDisable(GL_LIGHT2);
             this->corLuz = cinza;
             this->desligado = true;
         }
