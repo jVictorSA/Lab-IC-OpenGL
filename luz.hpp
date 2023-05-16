@@ -1,5 +1,6 @@
 #include "primitivas.hpp"
 #include "cores.hpp"
+#include <iostream>
 
 class Luz
 {
@@ -16,7 +17,7 @@ public:
 
     void desenhaLuz()
     {
-
+        
         glPushMatrix();
 
         glTranslatef(xHaste, yHaste, zHaste);
@@ -40,47 +41,16 @@ public:
         {
             this->desligado = false;
             this->corLuz = branco;
-            
-            GLfloat luzAmbiente[4]={0.1,0.1,0.1,1.0};
-            GLfloat luzDifusa[4]={0.7,0.7,0.7,1.0};	   // "cor"
-            GLfloat luzEspecular[4]={1.0, 1.0, 1.0, 1.0};// "brilho"
-            
-            GLfloat posicaoLuz[4]={this->xHaste, this->yHaste - 3, this->zHaste, 1.0};
-            GLfloat spotdirection[] = {0,-1,0};
 
-            // Capacidade de brilho do material
-            GLfloat especularidade[4]={1.0,1.0,1.0,1.0};
-            GLint especMaterial = 60;
-
-            
-
-            
-
-            // Define a refletância do material
-            glMaterialfv(GL_FRONT,GL_SPECULAR, especularidade);
-            // Define a concentração do brilho
-            glMateriali(GL_FRONT,GL_SHININESS,especMaterial);
-
-            // Ativa o uso da luz ambiente
-            glLightModelfv(GL_LIGHT_MODEL_AMBIENT, luzAmbiente);
-
-            // Define os parâmetros da luz de número 0
+            GLfloat luzAmbiente[4] = {0.8, 0.8, 0.8, 1.0};
+            // glLightModelfv(GL_LIGHT_MODEL_AMBIENT, luzAmbiente);
             glLightfv(GL_LIGHT1, GL_AMBIENT, luzAmbiente);
-            glLightfv(GL_LIGHT1, GL_DIFFUSE, luzDifusa );
-            glLightfv(GL_LIGHT1, GL_SPECULAR, luzEspecular );
-            glLightfv(GL_LIGHT1, GL_POSITION, posicaoLuz );
 
-            // glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 45.0);
-            
-            // glLightfv(GL_LIGHT1,GL_SPOT_DIRECTION,spotdirection);
-
-            // Habilita a definição da cor do material a partir da cor corrente
-            glEnable(GL_COLOR_MATERIAL);
             
             
             glEnable(GL_LIGHT1);
-            // Habilita o depth-buffering
-            glEnable(GL_DEPTH_TEST);
+            
+            
 
             
         }
