@@ -33,36 +33,64 @@ O ```ALT``` desligado significa que o lado esquerdo do objeto (exemplo porta esq
 
 ## Imagens
 
+### AB1
+
 ### Inicio
 
-![Alt text](imgs/Inicio.png "Início")
+![Alt text](imgs/AB1/Inicio.png "Início")
 
 ### Final
 
-![Alt text](imgs/Final.png "Final")
+![Alt text](imgs/AB1/Final.png "Final")
 
 ### Vendo a sala pela porta
 
-![Alt text](imgs/Porta%20Aberta.png "Porta aberta")
+![Alt text](imgs/AB1/Porta%20Aberta.png "Porta aberta")
 
 ### Corredor
 
-![Alt text](imgs/Corredor.png "Corredor")
+![Alt text](imgs/AB1/Corredor.png "Corredor")
 
 ### Vendo a sala por cima
 
-![Alt text](imgs/Cima.png "Visão por cima 1")
+![Alt text](imgs/AB1/Cima.png "Visão por cima 1")
 
-![Alt text](imgs/Cima2.png "Visão por cima 3")
+![Alt text](imgs/AB1/Cima2.png "Visão por cima 3")
 
-![Alt text](imgs/Cima%20Inverso.png "Visão por cima 3")
+![Alt text](imgs/AB1/Cima%20Inverso.png "Visão por cima 3")
 
 ### Janelas e persianas abertas
 
-![Alt text](imgs/Janelas%20e%20persianas.png "Janelas e Persianas")
+![Alt text](imgs/AB1/Janelas%20e%20persianas.png "Janelas e Persianas")
 
 ### Armários
 
-![Alt text](imgs/Armarios.png "Armários 1")
+![Alt text](imgs/AB1/Armarios.png "Armários 1")
 
-![Alt text](imgs/Armarios2.png "Armários 2")
+![Alt text](imgs/AB1/Armarios2.png "Armários 2")
+
+### AB2
+
+### Área externa iluminada de dia
+
+![Alt text](imgs/AB2/Sol.jpeg "Iluminação diária - parte externa")
+
+### Laboratório à noite
+
+![Alt text](imgs/AB2/Luz%20noturna.jpeg "Iluminação do laboratório no horário noturno")
+
+### Laboratório à noite com luz acesa
+
+![Alt text](imgs/AB2/Luz%20acesa%20noite.jpeg "Iluminação ddo laboratório ao meio dia com luz apagada")
+
+### Laboratório ao meio dia com luz apagada
+
+![Alt text](imgs/AB2/Luz%20Meio%20dia.jpeg "Iluminação do laboratório ao meio dia com a luz apagada")
+
+### Laboratório à noite com luz apagada
+
+![Alt text](imgs/AB2/Luz%20apagada.jpeg "Iluminação ddo laboratório à noite com luz apagada")
+
+### Laboratório à noite com luz acessa
+
+![Alt text](imgs/AB2/Luz%20Acesa.jpeg "Iluminação ddo laboratório à com luz acessa")
