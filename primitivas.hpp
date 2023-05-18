@@ -59,7 +59,7 @@ void paralelepipedoAberto(float altura, float largura, float profundidade,
     glEnd();
 }
 
-// Desenha paralelepipedo fechado
+// Desenha paralelepipedo fechado sem textura
 void paralelepipedoFechado(float altura, float largura, float profundidade,
                            float xInicial, float yInicial, float zInicial,
                            const std::vector<float> cor){
@@ -118,6 +118,7 @@ void paralelepipedoFechado(float altura, float largura, float profundidade,
             glVertex3f(xInicial, yInicial + altura,  zInicial);
             glVertex3f(xInicial,  yInicial + altura,  zInicial - profundidade);
         glEnd();
+    glEnd();
 }
 
 void trianguloFechado(float altura, float largura, float profundidade,
@@ -179,7 +180,7 @@ GLvoid circulo(const GLfloat raio,const GLuint vertices, const std::vector<float
     vertex[3] = 1.0;        
     glVertex4fv(vertex);
     
-    for(int i = 0; i < vertices ; i++)
+    for(GLuint i = 0; i < vertices ; i++)
     {
         texcoord[0] = (std::cos(delta_angle*i) + 1.0)*0.5;
         texcoord[1] = (std::sin(delta_angle*i) + 1.0)*0.5;

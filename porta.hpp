@@ -4,6 +4,7 @@
 #include "primitivas.hpp"
 #include "cores.hpp"
 #include "matematica.hpp"
+#include "SOIL.h"
 
 class Porta{
     private:
@@ -22,7 +23,9 @@ class Porta{
         //Magnitude do movimento que deve ser incrementado ao angulo da maçaneta
         float movimentoAberturaMaçaneta = 0.5;
 
+
     public:
+        GLuint portaTexID;
 
         Porta(float alt, float larg, float prof, std::vector<float> corP, std::vector<float> corM){
             altura = alt;
@@ -47,8 +50,40 @@ class Porta{
                     glTranslatef(largura, 0, 0);
                     glRotatef(anguloPorta, 0 , 1, 0);
                     glTranslatef(-largura, 0, 0);                    
-
+                    
+                    // TEXTURIZAÇÃO DA PORTA
+                    if(portaTexID == 0){
+                        //std::cout << "hey\n";
+                        
+                        portaTexID = SOIL_load_OGL_texture("texturas/mesa_1.jpeg", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
+                                             SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_MULTIPLY_ALPHA);
+                    }
+                    
+                    // glEnable(GL_TEXTURE_3D);
+                    
+                    // glBindTexture(GL_TEXTURE_3D, portaTexID);
+                    
+                    // glEnable(GL_TEXTURE_GEN_S);
+                    // glEnable(GL_TEXTURE_GEN_T);
+                    // GLfloat texCoordScaleS = 0.0;
+                    // GLfloat texCoordScaleT = 0.01;
+                    // glTexGenf(GL_S, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR);
+                    // glTexGenf(GL_T, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR);
+                    // GLfloat texGenS[] = {0.0f ,texCoordScaleS, 0.0f, 0.0f, 0.0f};
+                    // GLfloat texGenT[] = {0.0f,  texCoordScaleT, 0.0f, 0.5f};
+                    // glTexGenfv(GL_S, GL_OBJECT_PLANE, texGenS);
+                    // glTexGenfv(GL_T, GL_OBJECT_PLANE, texGenT);
+                    
+                    
+                    // PORTA
                     paralelepipedoFechado(altura,largura, profundidade, 0,0,0, corPorta);
+                        
+                    
+                    // glDisable(GL_TEXTURE_GEN_S);
+                    // glDisable(GL_TEXTURE_GEN_T);
+
+                    // glDisable(GL_TEXTURE_3D);
+
 
                     // Maçanetas
                     glPushMatrix();

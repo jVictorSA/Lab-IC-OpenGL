@@ -19,7 +19,7 @@ float angulo = 0.0;
 float angulo2 = 0.0;
 float lx = 0.0f, ly = 0.0f, lz = -1.0f;
 float xOlho = 5.0f, zOlho = 40.0f;
-float yOlho = 10.0f;
+float yOlho = 0.0f;
 float velocity = 1.0f;
 float delta = 0.1f;
 
@@ -118,6 +118,14 @@ void inicializar(){
     // Habilita o teste de profundidade para evitar sobrepor objetos
     glEnable(GL_DEPTH_TEST);
 
+    // Cena::porta.portaTexID = SOIL_load_OGL_texture("texturas/mesa_1.jpeg", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
+    //                                          SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_MULTIPLY_ALPHA);
+    // Cena::solua.sunTextureID = SOIL_load_OGL_texture("texturas/sun.jpg", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
+    //                                     SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_MULTIPLY_ALPHA);
+
+    // Cena::solua.moonTextureID = SOIL_load_OGL_texture("texturas/moon.jpg", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
+    //                                      SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_MULTIPLY_ALPHA);
+
     glClearColor(0.2, 0.3, 0.4, 0.0);
 }
 
@@ -184,11 +192,11 @@ void teclasEspeciais(unsigned char tecla, int x, int y){
     if(tecla == 'j' || tecla == 'J'){ abrirOuFecharJanela(Cena::janelaEsq,                          // Abre ou fecha janela
                                                           Cena::janelaDir); }    
     if(tecla == 'o' || tecla == 'O'){ Cena::porta.abrirOuFecharPorta(); }                           // Abre ou fecha porta do laboratório
-    if(tecla == 'b'){
+    if(tecla == 'b' || tecla == 'B'){
         Cena::luz1.ligaDesliga();
         Cena::luz2.ligaDesliga();
     }
-    if(tecla == 'l'){
+    if(tecla == 'l' || tecla == 'L'){
         Cena::solua.diaNoite();
         
     }
