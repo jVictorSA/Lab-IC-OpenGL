@@ -20,7 +20,7 @@ CC = g++
 # --- SISTEMA OPERACIONAL ---
 
 # --- LIBS USADAS ---
-XLIBS = -Wall -lGL -lGLU -lglut -lGLEW -lglfw -lX11 -lXxf86vm -lXrandr -lpthread -lXi -ldl -lXinerama -lXcursor -lm
+XLIBS = -Wall -lSOIL -lGL -lGLU -lglut -lGLEW -lglfw -lX11 -lXxf86vm -lXrandr -lpthread -lXi -ldl -lXinerama -lXcursor -lm
 
 # --- ARQUIVO EXECUTÁVEL ---
 LINUX = -o $@

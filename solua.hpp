@@ -11,11 +11,15 @@ class Solua{
         GLfloat a = 0.9;
         GLfloat b = 0.9;
         GLfloat c = 1.0; 
-        GLuint sunTextureID;
-        GLuint moonTextureID;
         
         GLfloat sunColor[4] = { 1.0f, 1.0f, 0.0f, 1.0f };
         
+
+        GLuint sunTextureID;// = SOIL_load_OGL_texture("texturas/sun.jpg", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
+                              //           SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_MULTIPLY_ALPHA);
+
+        GLuint moonTextureID;// = SOIL_load_OGL_texture("texturas/moon.jpg", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
+                             //            SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_MULTIPLY_ALPHA);
 
     public:
         Solua(float x1, float y1, float z1){
@@ -24,8 +28,8 @@ class Solua{
             z = z1;
             
             
-            
         }
+
 
         ~Solua(){}
 
@@ -88,10 +92,11 @@ class Solua{
             // Habilita o depth-buffering
             glEnable(GL_DEPTH_TEST);
             
-            sunTextureID = SOIL_load_OGL_texture("sun.jpg", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
+
+            sunTextureID = SOIL_load_OGL_texture("texturas/sun.jpg", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
                                          SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_MULTIPLY_ALPHA);
 
-            moonTextureID = SOIL_load_OGL_texture("moon.jpg", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
+            moonTextureID = SOIL_load_OGL_texture("texturas/moon.jpg", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
                                          SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_MULTIPLY_ALPHA);
             
             glEnable(GL_TEXTURE_2D);
