@@ -15,13 +15,15 @@ class Solua{
         GLfloat sunColor[4] = { 1.0f, 1.0f, 0.0f, 1.0f };
         
 
-        GLuint sunTextureID;// = SOIL_load_OGL_texture("texturas/sun.jpg", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
-                              //           SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_MULTIPLY_ALPHA);
+        // = SOIL_load_OGL_texture("texturas/sun.jpg", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
+                              //           SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_MULTIPLY_ALPHA');
 
-        GLuint moonTextureID;// = SOIL_load_OGL_texture("texturas/moon.jpg", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
+        // = SOIL_load_OGL_texture("texturas/moon.jpg", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
                              //            SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_MULTIPLY_ALPHA);
 
     public:
+        GLuint sunTextureID;
+        GLuint moonTextureID;
         Solua(float x1, float y1, float z1){
             x = x1;
             y = y1;
@@ -92,12 +94,15 @@ class Solua{
             // Habilita o depth-buffering
             glEnable(GL_DEPTH_TEST);
             
-
-            sunTextureID = SOIL_load_OGL_texture("texturas/sun.jpg", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
+            if (sunTextureID == NULL){
+                sunTextureID = SOIL_load_OGL_texture("texturas/sun.jpg", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
                                          SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_MULTIPLY_ALPHA);
+            }
 
-            moonTextureID = SOIL_load_OGL_texture("texturas/moon.jpg", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
+            if(moonTextureID == NULL){
+                moonTextureID = SOIL_load_OGL_texture("texturas/moon.jpg", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
                                          SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_MULTIPLY_ALPHA);
+            }
             
             glEnable(GL_TEXTURE_2D);
             if(noite){
