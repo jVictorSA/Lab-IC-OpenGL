@@ -19,7 +19,7 @@ float angulo = 0.0;
 float angulo2 = 0.0;
 float lx = 0.0f, ly = 0.0f, lz = -1.0f;
 float xOlho = 5.0f, zOlho = 40.0f;
-float yOlho = 0.0f;
+float yOlho = 10.0f;
 float velocity = 1.0f;
 float delta = 0.1f;
 
