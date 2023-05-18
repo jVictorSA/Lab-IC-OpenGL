@@ -1,6 +1,16 @@
 # Lab-IC-OpenGL
 Repositório referente à AB1 de Computação gráfica. O trabalho consiste em uma renderização em 3D interativa de um laboratório do Instituto de Computação - UFAL A.C. Simões
 
+## Autores
+João Victor dos Santos Araujo
+* Github: https://github.com/jVictorSA
+
+Bruno Luiz Florentino Silva
+* Github: https://github.com/Brunot101 
+ 
+Vitor Magno Cunha de Gouveia
+* Github: https://github.com/VitorMagno  
+
 ## Compilação
 * Execute ```make laccanLab```
 
