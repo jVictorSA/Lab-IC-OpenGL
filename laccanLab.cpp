@@ -9,6 +9,7 @@
 #include "janela.hpp"
 
 
+
 const int BARRA_DE_ESPAÇO = 32;
 
 // Indica se a tecla ALT fora pressionada (funciona como um CAPS LOCK)

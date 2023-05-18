@@ -1,5 +1,6 @@
 #include "primitivas.hpp"
 #include "cores.hpp"
+#include "SOIL.h"
 
 class Solua{
     private:
@@ -10,6 +11,10 @@ class Solua{
         GLfloat a = 0.9;
         GLfloat b = 0.9;
         GLfloat c = 1.0; 
+        GLuint sunTextureID;
+        GLuint moonTextureID;
+        
+        GLfloat sunColor[4] = { 1.0f, 1.0f, 0.0f, 1.0f };
         
 
     public:
@@ -34,7 +39,7 @@ class Solua{
 
             GLfloat materialAmbient[] = {0.25f, 0.25f, 0.25f, 1.0f};
             GLfloat materialDiffuse[] = {1.0f, 1.0f, 1.0f, 1.0f};
-            GLfloat materialSpecular[] = {a,b,c,1};
+            GLfloat materialSpecular[] = {0.3,0.3,0.3,1};
             GLfloat materialShininess[] = {50.0};
             glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, materialAmbient);
             glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, materialDiffuse);
@@ -82,15 +87,50 @@ class Solua{
             glEnable(GL_LIGHT0);
             // Habilita o depth-buffering
             glEnable(GL_DEPTH_TEST);
+            
+            sunTextureID = SOIL_load_OGL_texture("sun.jpg", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
+                                         SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_MULTIPLY_ALPHA);
 
+            moonTextureID = SOIL_load_OGL_texture("moon.jpg", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
+                                         SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_MULTIPLY_ALPHA);
+            
+            glEnable(GL_TEXTURE_2D);
+            if(noite){
+
+            glBindTexture(GL_TEXTURE_2D, moonTextureID);
+            }
+            else{
+                glBindTexture(GL_TEXTURE_2D, sunTextureID);
+            }
+
+            
+            
+            glEnable(GL_TEXTURE_GEN_S);
+            glEnable(GL_TEXTURE_GEN_T);
+            GLfloat texCoordScaleS = 0.0;
+            GLfloat texCoordScaleT = 0.01;
+            glTexGenf(GL_S, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR);
+            glTexGenf(GL_T, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR);
+            GLfloat texGenS[] = {0.0f ,texCoordScaleS, 0.0f, 0.0f, 0.0f};
+            GLfloat texGenT[] = {0.0f,  texCoordScaleT, 0.0f, 0.5f};
+            glTexGenfv(GL_S, GL_OBJECT_PLANE, texGenS);
+            glTexGenfv(GL_T, GL_OBJECT_PLANE, texGenT);
+            
             glPushMatrix();
                 
                 glColor3f(a,b,c);
                 glTranslatef(this->x, this->y, this->z);
-                glutSolidSphere(10,40,40);
+                glutSolidSphere(10,50,50);
                 
                 
             glPopMatrix();
+            glDisable(GL_TEXTURE_GEN_S);
+            glDisable(GL_TEXTURE_GEN_T);
+
+            glDisable(GL_TEXTURE_2D);
+
+            // glFlush();
+            // glutSwapBuffers();
         
         glEnd();
     }
@@ -99,6 +139,11 @@ class Solua{
     void diaNoite(){
 
         if(noite){
+            
+
+            
+
+
             b=0.9;
             c=0.4;
             
