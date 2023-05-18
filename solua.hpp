@@ -10,12 +10,14 @@ class Solua{
         GLfloat a = 0.9;
         GLfloat b = 0.9;
         GLfloat c = 1.0; 
+        
 
     public:
         Solua(float x1, float y1, float z1){
             x = x1;
             y = y1;
             z = z1;
+            
             
             
         }
@@ -32,8 +34,8 @@ class Solua{
 
             GLfloat materialAmbient[] = {0.25f, 0.25f, 0.25f, 1.0f};
             GLfloat materialDiffuse[] = {1.0f, 1.0f, 1.0f, 1.0f};
-            GLfloat materialSpecular[] = {0.0f, 0.0f, 0.0f, 1.0f};
-            GLfloat materialShininess[] = {0.0f};
+            GLfloat materialSpecular[] = {a,b,c,1};
+            GLfloat materialShininess[] = {50.0};
             glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, materialAmbient);
             glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, materialDiffuse);
             glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, materialSpecular);
@@ -89,7 +91,10 @@ class Solua{
                 
                 
             glPopMatrix();
-        }
+        
+        glEnd();
+    }
+        
 
     void diaNoite(){
 
