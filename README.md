@@ -94,3 +94,7 @@ O ```ALT``` desligado significa que o lado esquerdo do objeto (exemplo porta esq
 ### Laboratório à noite com luz acessa
 
 ![Alt text](imgs/AB2/Luz%20Acesa.jpeg "Iluminação ddo laboratório à com luz acessa")
+
+### Persianas texturizadas
+
+![Alt text](imgs/AB2/persiana.jpeg "Texturas nas persianas")
