@@ -5,6 +5,11 @@ class Solua{
     private:
         float x, y, z;
         std::vector<float> cor;
+        GLfloat luzAmbiente[4] = {0.1, 0.1, 0.1, 1.0};
+        bool noite = true;
+        GLfloat a = 0.9;
+        GLfloat b = 0.9;
+        GLfloat c = 1.0; 
 
     public:
         Solua(float x1, float y1, float z1){
@@ -19,7 +24,7 @@ class Solua{
 
         void desenhar(){
 
-            GLfloat luzAmbiente[4] = {0.1, 0.1, 0.1, 1.0};
+            
             GLfloat luzDifusa[4] = {0.7, 0.7, 0.7, 1.0};    // "cor"
             GLfloat luzEspecular[4] = {1.0, 1.0, 1.0, 1.0}; // "brilho"
             GLfloat posicaoLuz[4] = {this->x, this->y, this->z + 50, 1};
@@ -77,11 +82,37 @@ class Solua{
             glEnable(GL_DEPTH_TEST);
 
             glPushMatrix();
-                glColor3f(cinza[1],cinza[1],cinza[1]);
+                
+                glColor3f(a,b,c);
                 glTranslatef(this->x, this->y, this->z);
                 glutSolidSphere(10,40,40);
                 
                 
             glPopMatrix();
         }
+
+    void diaNoite(){
+
+        if(noite){
+            b=0.9;
+            c=0.4;
+            
+            luzAmbiente[0] = 0.2;
+            luzAmbiente[1] = 0.2;
+            luzAmbiente[2] = 0.2;
+            luzAmbiente[3] = 0.2;
+            noite = false;
+
+        }
+        else{
+            a = 0.9;
+            b = 0.9;
+            c = 1.0;
+            luzAmbiente[0] = 0.1;
+            luzAmbiente[1] = 0.1;
+            luzAmbiente[2] = 0.1;
+            luzAmbiente[3] = 0.1;
+            noite = true;
+        }
+    }
 };

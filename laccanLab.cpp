@@ -187,6 +187,10 @@ void teclasEspeciais(unsigned char tecla, int x, int y){
         Cena::luz1.ligaDesliga();
         Cena::luz2.ligaDesliga();
     }
+    if(tecla == 'l'){
+        Cena::solua.diaNoite();
+        
+    }
 }
 
 void moverTeclado(int tecla, int x, int y){
