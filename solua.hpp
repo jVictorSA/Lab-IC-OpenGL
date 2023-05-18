@@ -17,7 +17,7 @@ class Solua{
         
         float intensidadeLuzDiaNoite = 0.25;
         
-        float intervaloIntensidadeLuz = 0.2;
+        float intervaloIntensidadeLuz = 0.15;
         float anguloSol = 0;
 
     public:
@@ -47,9 +47,7 @@ class Solua{
 
             // Durante o dia
             if(anguloSol < 160 || anguloSol > 340 ){
-                intensidadeLuzDiaNoite += (clamp<float>(intervaloIntensidadeLuz, 0.1, 0.3) / 360);
-                
-                std::cout<< intensidadeLuzDiaNoite << '\n';
+                intensidadeLuzDiaNoite += (clamp<float>(intervaloIntensidadeLuz, 0.05, 0.3) / 300);
                 
                 luzAmbiente[0] = intensidadeLuzDiaNoite;
                 luzAmbiente[1] = intensidadeLuzDiaNoite;
@@ -60,9 +58,8 @@ class Solua{
 
             // Durante a noite                 
             }else{                
-                intensidadeLuzDiaNoite -= (clamp<float>(intervaloIntensidadeLuz, 0.1, 0.3) / 360);
-
-                std::cout<< intensidadeLuzDiaNoite << '\n';
+                intensidadeLuzDiaNoite -= (clamp<float>(intervaloIntensidadeLuz, 0.05, 0.3) / 300);
+                
                 luzAmbiente[0] = intensidadeLuzDiaNoite;
                 luzAmbiente[1] = intensidadeLuzDiaNoite;
                 luzAmbiente[2] = intensidadeLuzDiaNoite;
